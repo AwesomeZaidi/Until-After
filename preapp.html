@@ -29,7 +29,7 @@ limitations under the License.
        * TODO(DEVELOPER): Paste the initialization snippet from: Firebase Console > Overview > Add Firebase to your web app. *
        *********************************************************************************************************************** -->
   <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
-  
+
 <script src="https://www.gstatic.com/firebasejs/3.4.1/firebase.js"></script>
 <!-- This is the code snippet for our Firebase initialization -->
 <script src="https://www.gstatic.com/firebasejs/3.4.1/firebase.js"></script>
@@ -43,6 +43,10 @@ limitations under the License.
     messagingSenderId: "2139413960"
   };
   firebase.initializeApp(config);
+
+  // Get a reference to the database service
+var database = firebase.database();
+
 </script>
   <script type="text/javascript">
     /**
@@ -203,7 +207,7 @@ limitations under the License.
     };
   </script>
 </head>
-<body>    
+<body>
 <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-header">
 
   <!-- Header section containing title -->

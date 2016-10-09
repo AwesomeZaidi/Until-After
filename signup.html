@@ -52,16 +52,16 @@
             writeUserData(username, password);
             resolve();
         })
-        promise.then(redirectToJournal());
+        promise.then(redirectToChoosingUser());
 
         var y = document.write(snapshot.key());
         console.error(y);
     };
 
-    function redirectToJournal(){
-        console.log("redirecting to journal");
+    function redirectToChoosingUser(){
+        console.log("redirecting to choosinguser");
         console.log(window.location);
-        window.location.href = "journal.html";
+        window.location.href = "choosinguser.html";
         console.log(window.location);
     }
     

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-
+    <link rel="stylesheet" href="journal.css">
     <script src="https://www.gstatic.com/firebasejs/3.4.1/firebase.js"></script>
     <script>
     // Initialize Firebase
@@ -15,14 +15,13 @@
     var database = firebase.database();
     </script>
 
-
     <link href="signup.html">
     <script type="text/javascript"> 
     var usersRef = firebase.database().ref('/users/')
     usersRef.once('value', function(snapshot) {
 
         snapshot.forEach(function(item) {
-addListItem(item.val().username);
+            addListItem(item.val().username);
             console.log(item.val().username);
         });
     });
@@ -37,10 +36,10 @@ function addListItem(name) {
 
 </head>
 <body>
-<select id="mySelect" size="8">
-
-  </select>
-
+<select class="wrapper" id="mySelect" size="8">
+    
+</select>
+</div>
 </body>
 
 </html>

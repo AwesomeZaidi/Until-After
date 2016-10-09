@@ -18,13 +18,7 @@
     <link href="signup.html">
     <script type="text/javascript"> 
     var usersRef = firebase.database().ref('/users/')
-    usersRef.once('value', function(snapshot) {
 
-        snapshot.forEach(function(item) {
-            addListItem(item.val().username);
-            console.log(item.val().username);
-        });
-    });
 
 function addListItem(name) {
     var x = document.getElementById("mySelect");
@@ -41,19 +35,12 @@ function addListItem(name) {
 
 </select>
 
-<<<<<<< HEAD
-<form action="  ">
+
+<form action=" journal.html ">
 Enter user's name:  <input type="text">
 
-
-
-<button input type ="text" class="button button1">Start Writing!</button>
+<button input class="button button1">Start Writing!</button>
 </form>
-
-
-=======
-<button class="button button1">Start Writing!</button>
->>>>>>> f7a4cd159970d4bcdaaa05b2281a8c0f90d42c54
 </body>
 
 </html>

@@ -16,26 +16,28 @@
     </script>
     
     <script type="text/javascript"> 
-    String.prototype.hashCode = function(){
-	var hash = 0;
-	if (this.length == 0) return hash;
-	for (i = 0; i < this.length; i++) {
-		char = this.charCodeAt(i);
-		hash = ((hash<<5)-hash)+char;
-		hash = hash & hash; // Convert to 32bit integer
-	}
-	return hash;
-    }   
+    // String.prototype.hashCode = function(){
+	// var hash = 0;
+	// if (this.length == 0) return hash;
+	// for (i = 0; i < this.length; i++) {
+	// 	char = this.charCodeAt(i);
+	// 	hash = ((hash<<5)-hash)+char;
+	// 	hash = hash & hash; // Convert to 32bit integer
+	// }
+	// return hash;
+    // }   
+
     function writeUserData(username, password) {
         
         console.log("WriteUserData enter");
         
-        var x = firebase.database().ref('users/' + username.hashCode()).push({
+        var x = firebase.database().ref('users/' + username).set({
             username: username,
-            password: password
-            
+            password: password        
         });
         console.log("Firebase object " + x);
+
+        set({ first: 'Fred', last: 'Flintstone' });
     } 
 
     function submitForm() {
@@ -51,6 +53,9 @@
             resolve();
         })
         promise.then(redirectToJournal());
+
+        var y = document.write(snapshot.key());
+        console.error(y);
     };
 
     function redirectToJournal(){
@@ -59,8 +64,10 @@
         window.location.href = "journal.html";
         console.log(window.location);
     }
-
+    
     </script>
+
+    
     
 </head>
 <body>

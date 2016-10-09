@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<head>
+
+    <script src="https://www.gstatic.com/firebasejs/3.4.1/firebase.js"></script>
+    <script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyDNDQyelNZWOZn_U6FJaLtCXmIIdLBXVgc",
+        authDomain: "untilafter-ef04f.firebaseapp.com",
+        databaseURL: "https://untilafter-ef04f.firebaseio.com",
+        storageBucket: "untilafter-ef04f.appspot.com",
+        messagingSenderId: "2139413960"
+    };
+    firebase.initializeApp(config);
+    var database = firebase.database();
+    </script>
+
+
+    <link href="signup.html">
+    <script type="text/javascript"> 
+    var usersRef = firebase.database().ref('/users/')
+    usersRef.once('value', function(snapshot) {
+
+        snapshot.forEach(function(item) {
+addListItem(item.val().username);
+            console.log(item.val().username);
+        });
+    });
+
+function addListItem(name) {
+    var x = document.getElementById("mySelect");
+    var option = document.createElement("option");
+    option.text = name;
+    x.add(option);
+}
+</script>
+
+</head>
+<body>
+<select id="mySelect" size="8">
+
+  </select>
+
+</body>
+
+</html>

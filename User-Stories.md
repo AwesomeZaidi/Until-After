@@ -13,8 +13,7 @@ So what is a user story? It's a description of an application’s functionality 
 The User Story will consist of a Summary / Description.
 (1. Who | 2. What | 3. Why / For What / From Where)
  
-
-User creates account to journal.
+## User Stories
 
 User journals every week and a new dot is created in the UI. Once the user reaches one month, those 4 week dots are turned into one months dot.
 

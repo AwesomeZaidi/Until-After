@@ -1,13 +1,12 @@
 {{!-- {{> header}} --}}
-<main class="login-page">
-    <form class="login-form" action="/login" method="post">
+<main class="auth-page">
+    <form class="auth-form" action="/login" method="post">
         <legend>Until After Login</legend>
             <label for="username">Username</label>
             <input type="text" name="username" placeholder="Username" oninput="this.className = ''">
             <label for="password">Password</label>
             <input type="password" name="password" placeholder="Password" oninput="this.className = ''">    
-            <button class="login-btn" type="submit">Login</button>
-            <p><a class="new-account-txt" href="/start">Create an account?</a></p>
-
+            <button class="auth-btn" type="submit">Login</button>
+            <p class="other-text"><a href="/signup">Create an account?</a></p>
     </form>
 </main>

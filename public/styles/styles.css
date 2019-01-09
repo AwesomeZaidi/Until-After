@@ -150,7 +150,7 @@ main {
   }
 }
 @media (min-width: 310px) {
-  .login-page {
+  .auth-page {
     top: 0;
     bottom: 0;
     position: fixed;
@@ -158,26 +158,27 @@ main {
     width: 100vw;
     color: #ffffff;
   }
-  .login-page .top {
+  .auth-page .top {
     width: 100vw;
     top: 0;
     padding-left: 2em;
     background: #5e3080;
   }
-  .login-page form {
+  .auth-page form {
     margin-left: 2em;
-    margin-top: 4em;
+    padding: 4em 0em;
+    margin-top: 0em;
   }
-  .login-page form legend {
+  .auth-page form legend {
     font-size: 1.7em;
     font-weight: 800;
     letter-spacing: 1px;
     margin-bottom: 2em;
   }
-  .login-page form label {
+  .auth-page form label {
     font-size: 1.3em;
   }
-  .login-page form input {
+  .auth-page form input {
     display: block;
     height: 2.6em;
     padding-left: 1em !important;
@@ -193,14 +194,14 @@ main {
     background: rgba(255, 255, 255, 0.05);
     color: #ffffff;
   }
-  .login-page form input::placeholder {
+  .auth-page form input::placeholder {
     /* Chrome, Firefox, Opera, Safari 10.1+ */
     -webkit-text-fill-color: #dbdbdb;
     transition: background-color 5000s ease-in-out 0s;
     opacity: 1;
     /* Firefox */
   }
-  .login-page form .login-btn {
+  .auth-page form .auth-btn {
     height: 3em;
     cursor: pointer;
     border-radius: 0.3em;
@@ -211,11 +212,22 @@ main {
     display: inline-block;
     font-size: 1em;
   }
-  .login-page form .new-account-txt {
+  .auth-page form .new-account-txt {
     color: #ffffff;
   }
-  .login-page button > a {
+  .auth-page button > a {
     color: #ffffff;
+  }
+  .auth-page .other-text {
+    margin: 0em;
+  }
+  .auth-page .other-text a {
+    text-decoration: none;
+    color: white;
+  }
+
+  .auth-page.signup {
+    position: unset;
   }
 }
 

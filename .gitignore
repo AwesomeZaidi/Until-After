@@ -1,7 +1,7 @@
 
 # Created by https://www.gitignore.io/api/git,node,macos,visualstudio,visualstudiocode
 # Edit at https://www.gitignore.io/?templates=git,node,macos,visualstudio,visualstudiocode
-routes/auth.js
+
 ### Git ###
 # Created by git for backups. To disable backups in Git:
 # $ git config --global mergetool.keepBackup false
@@ -81,7 +81,6 @@ bower_components
 build/Release
 
 # Dependency directories
-/node_modules/
 node_modules/
 jspm_packages/
 
@@ -105,6 +104,7 @@ typings/
 
 # dotenv environment variables file
 .env
+.env.test
 
 # parcel-bundler cache (https://parceljs.org/)
 .cache
@@ -119,10 +119,13 @@ typings/
 .vuepress/dist
 
 # Serverless directories
-.serverless
+.serverless/
 
 # FuseBox cache
 .fusebox/
+
+# DynamoDB Local files
+.dynamodb/
 
 ### VisualStudioCode ###
 .vscode/*
@@ -158,6 +161,8 @@ typings/
 [Rr]eleases/
 x64/
 x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
 bld/
 [Bb]in/
 [Oo]bj/
@@ -346,7 +351,7 @@ _pkginfo.txt
 # files ending in .cache can be ignored
 *.[Cc]ache
 # but keep track of directories ending in .cache
-!*.[Cc]ache/
+!?*.[Cc]ache/
 
 # Others
 ClientBin/
@@ -366,6 +371,8 @@ orleans.codegen.cs
 # Since there are multiple workflows, uncomment next line to ignore bower_components
 # (https://github.com/github/gitignore/pull/1529#issuecomment-104372622)
 #bower_components/
+# ASP.NET Core default setup: bower directory is configured as wwwroot/lib/ and bower restore is true
+**/wwwroot/lib/
 
 # RIA/Silverlight projects
 Generated_Code/
@@ -469,5 +476,7 @@ ASALocalRun/
 # Local History for Visual Studio
 .localhistory/
 
-# End of https://www.gitignore.io/api/git,node,macos,visualstudio,visualstudiocodesendgrid.env
-sendgrid.env
+# BeatPulse healthcheck temp database
+healthchecksdb
+
+# End of https://www.gitignore.io/api/git,node,macos,visualstudio,visualstudiocode

@@ -1,6 +1,9 @@
-# Until-After
-MHacks 8!
+# Until After
 
-Private journal that unlocks when you die.
+## How to Run
+1. `git clone url`
+2. `npm install`
+3. `npm install nodemon`
+3. `nodemon`
 
-FINALLY CREATING IT FOR THE WORLD 2K19
+## Routes

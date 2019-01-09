@@ -1,0 +1,23 @@
+<form action="/signup" method="post">
+    <label for="username">Username</label>
+    <input type="text" name="username" placeholder="First Name">
+    <label for="firstName">First Name</label>
+    <input type="text" name="firstName" placeholder="First Name">
+    <label for="lastName">Last Name</label>
+    <input type="text" name="lastName" placeholder="Last Name">
+    <label for="email">Email</label>
+    <input type="email" name="email" placeholder="Email">
+    <label for="phoneNumber">Phone Number</label>
+    <input type="text" name="phoneNumber" placeholder="Phone Number">
+    <label for="bestWayToContact">Best WayTo Contact You?</label>
+    <input list="contactmethods" name="bestWayToContact">
+    <datalist id="contactmethods" multiple>
+        <option value="Phone">
+        <option value="Email">
+        <option value="Text">
+    </datalist>
+    <label for="password">Password</label>
+    <input type="password" name="password">  
+
+    <button type="submit">Sign up</button>
+</form>

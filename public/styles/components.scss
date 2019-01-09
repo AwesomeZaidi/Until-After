@@ -1,0 +1,86 @@
+html, body {
+    padding: 0px;
+    margin: 0px;
+    font-size: 16px;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+.box {
+    width: 100%;
+    max-width:100%;  /* added */
+}
+
+
+// COLOR VARIABLES
+
+$white: #ffffff;
+$blue: #44C0FF;
+
+header {
+    background-color: $blue;
+    height: 2.4em;
+    nav {
+        height: 100%;
+        .nav-items {
+            height: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .right {
+                margin-right: 1.4em;
+                i {
+                    color: $white;
+                    font-size: 1.4em;
+                }
+            }
+            .left {
+                margin-left: 1.4em;
+                i {
+                    color: $white;
+                    font-size: 1.3em;
+                }
+            }
+        }
+    }
+}
+
+// this didn't work on hero-image
+// .darken {
+//     background-image: 
+//       linear-gradient(
+//         rgba(0, 0, 0, 0.909),
+//         rgba(0, 0, 0, 0.943)
+//       )
+// }
+
+$small-phone-width: 310px; // Small tablets and large smartphones (landscape view)
+
+$tablet-width: 768px; // Small tablets (portrait view)
+
+$desktop-width: 1200px; // Large tablets and desktops
+
+// we will design for mobile first so only need to media query tablets and desktop views.
+@mixin phone {
+    @media (min-width: #{$small-phone-width}) {
+        @content;
+      }
+}
+
+@mixin tablet {
+  @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+    @media (min-width: #{$desktop-width}) {
+      @content;
+    }
+}

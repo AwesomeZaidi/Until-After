@@ -1,18 +1,23 @@
 {
-  "name": "untilafter",
+  "name": "until-after",
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "test": "mocha test/*_test.js",
-    "test-watch": "nodemon --exec 'npm test'"
+    "start": "nodemon server.js"
   },
   "dependencies": {
+    "bcrypt": "^3.0.3",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
+    "dotenv": "^6.2.0",
     "express": "~4.16.0",
     "express-handlebars": "^3.0.0",
+    "express-jwt": "^5.3.1",
+    "express-validator": "^5.3.1",
     "handlebars-helpers": "^0.10.0",
     "http-errors": "~1.6.2",
+    "jsonwebtoken": "^8.4.0",
+    "mongoose": "^5.4.2",
     "morgan": "~1.9.0"
   }
 }

@@ -38,15 +38,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(__dirname + '../public'));
 
 // require routers (mountable route handlers. This instead of passing in the whole app to each module.)
-const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
 const checkAuth = require('./middleware/checkAuth');
+const journalRouter = require('./routes/journal');
+const usersRouter = require('./routes/users');
 // specific custom auth checking middleware.
 
 // app.use(checkAuth);
-app.use('/', indexRouter);
-app.use('/', usersRouter);
 app.use('/', checkAuth);
+app.use('/', journalRouter);
+app.use('/', usersRouter);
 
 // error handler - later.
 app.use(function(err, req, res, next) {

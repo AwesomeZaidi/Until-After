@@ -34,11 +34,18 @@
                     margin-right: 3px;
                 
                 }
-                textarea {
-                    height: 95%;
-                    font-size: 1em;
-                    padding: .5em;
+                .journal-form {
                     box-sizing: border-box; 
+                    height: 95%;
+                    width: 99%;
+                    font-size: 1em;
+                    textarea {
+                        height: 100%;
+                        max-width: 99%;
+                        width: 99%;
+                        font-size: 1em;
+                        //TODO: add padding to this later
+                    }
                 }
             }
             .journal-guide {

@@ -88,11 +88,17 @@ main {
     margin-bottom: 3px;
     margin-right: 3px;
   }
-  .journal .journal-area textarea {
-    height: 95%;
-    font-size: 1em;
-    padding: 0.5em;
+  .journal .journal-area .journal-form {
     box-sizing: border-box;
+    height: 95%;
+    width: 99%;
+    font-size: 1em;
+  }
+  .journal .journal-area .journal-form textarea {
+    height: 100%;
+    max-width: 99%;
+    width: 99%;
+    font-size: 1em;
   }
   .journal .journal-guide {
     width: 100%;

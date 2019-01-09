@@ -7,17 +7,27 @@
         <i class="fas fa-camera item-icons"></i>
     </section>
     {{!-- <div class="journal-wrapper"> --}}
-        <section class="journal-area">
-            <p class="save-text">Auto Saving...</p>
-            <textarea class="box" name="" id=""></textarea>
-        </section>
-        <section class="journal-guide">
-            <p class="popup-question"><strong>How was today?</strong></p>
-            <div class="mood-choice">
-                <p>😃</p>
-                <p>😕</p>
-                <p>☹️</p>
-            </div>
-        </section>
+    <section class="journal-area">
+        <div id="status" class="nochange save-text"></div>
+        <form class="box journal-form" action="/saveJournalEntry?_method=PUT" id="journalEntryBox" method="post">
+            <textarea class="day" name="day"></textarea>
+        </form>
+    </section>
+    <section class="journal-guide">
+        <p class="popup-question"><strong>How was today?</strong></p>
+        <div class="mood-choice">
+            <p>😃</p>
+            <p>😕</p>
+            <p>☹️</p>
+        </div>
+    </section>
     {{!-- </div> --}}
 </main>
+
+<style>
+    #status { font-size: 13px; }
+    #status.nochange { color: #aaa; }
+    #status.pending { color: #a00; }
+    #status.saved { color: #0a0; }
+    #commentBox { width: 400px; height: 200px; }
+</style>

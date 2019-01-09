@@ -4,10 +4,9 @@ const Schema = mongoose.Schema;
 const JournalSchema = new Schema({
     createdAt: { type: Date },
     updatedAt: { type: Date },
-    day: { type: String },
+    // entry : [{ type: Schema.Types.ObjectId, ref: 'Entry', required: false }],
+    day: { type: String, default: "" },
     week: { type: Array },
-    months: { type: Array },
-    userId : [{ type: Schema.Types.ObjectId, ref: 'User', required: false }],
 });
 
 JournalSchema.pre("save", function(next) {

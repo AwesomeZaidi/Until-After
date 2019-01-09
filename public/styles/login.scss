@@ -1,0 +1,71 @@
+@include phone {
+    .login-page {
+        top: 0;
+        bottom: 0;
+        position: fixed;
+        z-index: 1;
+        width: 100vw;
+        color: $white;
+        .top {
+            width: 100vw;
+            top: 0;
+            padding-left: 2em;
+            background: #5e3080;
+        }
+        form {
+            margin-left: 2em;
+            margin-top: 4em;
+            legend {
+                font-size: 1.7em;
+                font-weight: 800;
+                letter-spacing: 1px;
+                margin-bottom: 2em;
+            }
+            label {
+                font-size: 1.3em;
+            }
+            input {
+                display: block;
+                height: 2.6em;
+                padding-left: 1em !important;
+                margin: 0.4em 0em 2em 0em;
+                font-size: 1.2em;
+                line-height: 2em;
+                border-top: none;
+                border-right: none;
+                border-left: none;
+                border-bottom: solid #ffffff;
+                outline: none;
+                transition: all 0.3s ease-in-out;
+                background: rgba(255, 255, 255, 0.05);
+                color: $white;
+            }
+            input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+                -webkit-text-fill-color: #dbdbdb;
+                transition: background-color 5000s ease-in-out 0s;
+                opacity: 1; /* Firefox */
+            }
+            .login-btn {
+                height: 3em;
+                cursor: pointer;
+                border-radius: .3em;
+                min-width: 126px;
+                background-color: #ffffff;
+                color: $blue;
+                border: none;
+                display: inline-block;
+                font-size: 1em;
+            }
+            .new-account-txt {
+                color: #ffffff;
+            }
+        }
+    
+        // button {
+        //     float:right;
+        // }
+        button > a {
+            color: #ffffff;
+        }
+    }
+}

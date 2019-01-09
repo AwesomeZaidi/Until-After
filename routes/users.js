@@ -3,9 +3,13 @@ var router = express.Router();
 const User = require("../models/user");
 const jwt = require('jsonwebtoken');
 
-// GET SIGNUP PAGE
-router.get('/signup', (req, res) => {
-  res.render('signup');
+/* GET home page. */
+router.get('/signup', function(req, res, next) {
+    res.render('signup');
+});
+
+router.get('/login', function(req, res, next) {
+    res.render('login');
 });
 
 // POST SIGNUP

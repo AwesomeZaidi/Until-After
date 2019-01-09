@@ -44,6 +44,7 @@ header {
                 i {
                     color: $white;
                     font-size: 1.4em;
+                    margin: 0 .2em;
                 }
             }
             .left {
@@ -51,10 +52,15 @@ header {
                 i {
                     color: $white;
                     font-size: 1.3em;
+                    margin: 0 .2em;
                 }
             }
         }
     }
+}
+
+main {
+    background-color: $blue;
 }
 
 // this didn't work on hero-image

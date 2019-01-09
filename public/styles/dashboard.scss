@@ -1,5 +1,5 @@
 @include phone {
-    main {
+    .dashboard {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -9,7 +9,22 @@
                 text-align: center;
                 margin: 0;
                 display: block;
+                font-size: 1.6em;
+                font-weight: 800;
+                margin-bottom: .5em;
             }
+            .month {
+                display: flex;
+                justify-content: space-evenly;
+                .circle {
+                    height: 20px;
+                    width: 20px;
+                    background-color: $white;
+                    border-radius: 50%;
+                    margin-bottom: 1em;
+                  }
+            }
+
         }
     }
 }

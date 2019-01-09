@@ -1,7 +1,6 @@
 
 @include phone {
-    main {
-        background-color: $blue;
+    .journal {
         display: flex;
         flex-direction: column;
         justify-content: center;

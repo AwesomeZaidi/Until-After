@@ -17,6 +17,12 @@ html, body {
     max-width:100%;  /* added */
 }
 
+.journal-view-box {
+    width: 100%;
+    max-width:100%;  /* added */
+    height: 80vh;
+}
+
 
 // COLOR VARIABLES
 
@@ -25,7 +31,7 @@ $blue: #44C0FF;
 
 header {
     background-color: $blue;
-    height: 2.4em;
+    height: 10vh;
     nav {
         height: 100%;
         .nav-items {

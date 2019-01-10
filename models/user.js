@@ -22,6 +22,9 @@ const UserSchema = new Schema({
   // friends : [{ type: Schema.Types.ObjectId, ref: "User", required: false }],
   journal : [{ type: Schema.Types.ObjectId, ref: "Journal"}],
   isAdmin: { type: Boolean, default: false },
+  underInvestigation: { type: Boolean, default: false},
+  accessRequested: { type: Boolean, default: false},
+  dead: { type: Boolean, default: false}
 });
 
 // const User = mongoose.model("User", UserSchema);

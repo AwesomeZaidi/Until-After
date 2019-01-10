@@ -102,13 +102,26 @@ router.get('/logout', (req, res) => {
     res.redirect('/');
 });
 
-// /* GET settings page. */
-// router.get('/settings', function(req, res, next) {
-//     if (req.user) {
-//         res.redirect('/settings');
-//     } else {
-//         res.render('signup');
-//     }
-// })
+/* GET user profile page. */
+router.get('/:id/journal', function(req, res, next) {
+    console.log("req.params:", req.params);
+
+    User.findById(req.params.id).then((user) => {
+        if (user.death == true) {
+            res.render('/public-journal-view', {user});
+        }
+        else if (user.underInvestigation == true) {
+            const investigating = true
+            res.render('/journal-view', {investigating});
+        }
+        else if (user.accountOpenRequested == false) {
+            res.render('/journal-view');
+        }
+    }).catch((err) => {
+        return res.status(401).send({ message: "Found no user that unique ID!" });
+        console.log(err);
+        
+    })
+})
 
 module.exports = router;

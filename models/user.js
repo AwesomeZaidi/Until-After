@@ -29,20 +29,12 @@ const UserSchema = new Schema({
 
 // const User = mongoose.model("User", UserSchema);
 UserSchema.pre("save", function(next) {
-  // check if user already exists.
-  // User.find({username: this.username, email: this.email}).then(user => {
-  //     next(new Error("User exists!"));
-  // });
-
+  
   const now = new Date();
   this.updatedAt = now;
   if (!this.createdAt) {
     const thisMoment = moment(this.createdAt).format("h:mm");
     this.createdAt = thisMoment;
-    // this.createdAt = moment(now, 'HH:mm:ss').format('h:mm:ss A');
-    console.log("CREATED AT:", this.createdAt);
-    // function convert(input) {
-    //  return time;
  }
 
   // ENCRYPT PASSWORD

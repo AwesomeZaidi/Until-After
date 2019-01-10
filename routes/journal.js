@@ -1,6 +1,34 @@
 const express = require('express');
 const router = express.Router();
 const Journal = require("../models/journal");
+const User = require("../models/user");
+
+/* GET user journal page. */
+router.get('/:id/journal', function(req, res, next) {
+  console.log("journal view");
+  if (req.user == null) {
+    res.redirect('/login');
+  }
+  else if (req.user.id == req.params.id) {
+    res.redirect('/');
+  } 
+  else {
+      User.findById(req.params.id).then((user) => {
+          if (req.user.death == true) {
+              res.render('public-journal-view', {user});
+          }
+          else if (user.underInvestigation == true) {
+              const investigating = user.underInvestigation;
+              res.render('journal-view', { investigating });
+          }
+          else if (user.accountOpenRequested == false) {
+              res.render('journal-view');
+          }
+      }).catch((err) => {
+          return res.status(401).send({ message: "Found no user that unique ID!" });
+      })   
+  }
+})
 
 router.get('/', function(req, res, next) {
   const currentUser = req.user;

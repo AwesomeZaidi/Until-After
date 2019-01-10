@@ -1,0 +1,60 @@
+<main class="auth-page signup request">
+    <i class="fas fa-exclamation-circle"></i>
+    <p class="request-top-text">You're about to request access to view {{name}}'s account. Please read carefully before continuing.</p>
+
+    <p class="request-details-text">By submitting this form you are claiming this person has passed away.
+        For us to confirm your request, you must <strong>upload proof of death</strong>.
+        This can be a link to an <strong>obituary</strong> or copy of a <strong>death certificate</strong>.
+        We will then verify these documents. We may request additional info from you.
+        If we find out {{name}} is alive when you are submitting this request, you will be <strong>banned</strong> from the website.
+        Please allow at least 30 days for our investigation.
+        We are deeply sorry for your loss.</p>
+
+    <form class="auth-form" action="/{{id}}/requestAccess" method="post">
+        <legend>Request Access Form</legend>          
+
+        <input type="hidden" name="requester" value="{{authenticatedUser.id}}">
+        <input type="hidden" name="requestee" value="{{id}}">
+
+        <label for="relationship">How did you know {{name}}*</label>
+        <input type="text" name="relationship" placeholder="Your relationship..." oninput="this.className = ''">
+        
+        <label for="death-certificate">Death Certificate</label>
+        <input class="file-upload"type="file" name="death-certificate">
+
+        <label for="obituary-link">Obituary Link</label>
+        <input type="text" name="obituary-link" placeholder="Obituary link...">
+
+        <button class="btn" type="submit">Submit</button>
+    </form>
+</main>
+
+<style>
+    .auth-page.signup.request {
+        padding-top: 4em;
+    }
+    .request-top-text {
+        padding: 0px 1.2em;
+        font-size: 1.2em;
+        text-align: center;
+    }
+    .fas.fa-exclamation-circle {
+        font-size: 2.2em;
+        margin-bottom: .3em;
+        text-align: center;
+        margin: 0 auto .3em auto;
+        display: block;
+    }
+    .request-details-text {
+        margin-top: 1em;
+        padding: 0px 1.2em;
+        font-size: 1em;
+        text-align: center;
+    }
+    .auth-page form legend {
+        margin-bottom: 1em;
+    }
+    .file-upload {
+        max-width: 70vw;
+    }
+</style>

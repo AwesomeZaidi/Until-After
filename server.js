@@ -9,6 +9,8 @@ const bodyParser = require('body-parser'); //this basically allows us to get the
 const logger = require('morgan');
 const jwt = require('jsonwebtoken');
 const methodOverride = require('method-override');
+const expressFileupload = require('express-fileupload');
+
 const app = express();
 // Use Body Parser
 app.use(bodyParser.json());
@@ -37,12 +39,15 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(__dirname + '../public'));
 app.use(methodOverride('_method'));
+app.use(expressFileupload({}));
 
 // require routers (mountable route handlers. This instead of passing in the whole app to each module.)
 const checkAuth = require('./middleware/checkAuth');
 const journalRouter = require('./routes/journal');
 const usersRouter = require('./routes/users');
 const settingsRouter = require('./routes/settings');
+const requestRouter = require('./routes/request');
+
 
 // specific custom auth checking middleware.
 
@@ -51,6 +56,7 @@ app.use('/', checkAuth);
 app.use('/', journalRouter);
 app.use('/', usersRouter);
 app.use('/', settingsRouter);
+app.use('/', requestRouter);
 
 
 // error handler - later.

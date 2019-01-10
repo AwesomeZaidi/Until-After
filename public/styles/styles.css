@@ -322,7 +322,7 @@ main {
   -o-background-size: cover;
   background-size: cover;
   height: 100vh;
-  padding-top: 8em;
+  padding-top: 1em;
 }
 .locked-journal-view .locked-text {
   font-size: 1.4em;

@@ -129,22 +129,4 @@ router.get('/logout', (req, res) => {
     res.redirect('/');
 });
 
-/* GET user profile page. */
-router.get('/:id/journal', function(req, res, next) {
-    User.findById(req.params.id).then((user) => {
-        if (user.death == true) {
-            res.render('public-journal-view', {user});
-        }
-        else if (user.underInvestigation == true) {
-            const underInvestigation = user.underInvestigation;
-            res.render('journal-view', {investigating});
-        }
-        else if (user.accountOpenRequested == false) {
-            res.render('journal-view');
-        }
-    }).catch((err) => {
-        return res.status(401).send({ message: "Found no user that unique ID!" });
-    })
-})
-
 module.exports = router;

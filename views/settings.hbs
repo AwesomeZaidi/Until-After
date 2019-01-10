@@ -9,7 +9,7 @@
         {{!-- <h4 class="your-code">{{authenticatedUser._id}}</h4> --}}
             <div class="copy-section">
                 <input type="text" class="code" id="code" readonly="readonly" value="{{authenticatedUser._id}}">
-                <button class="copy-btn anim-hov-fast" onclick="copyText('code')">Copy</button>    
+                <button class="copy-btn anim-hov-fast" onclick="copyText('code')">Copy</button> 
             </div>
     </section>
     {{#if name}}
@@ -19,7 +19,7 @@
         </p>
         <div class="user">
             <p class="user-name">{{name}}</p>
-            <a href="/{{id}}/journal"><button class="btn">Request Access</button></a>
+            <a href="/{{id}}/requestAccess"><button class="btn">Request Access</button></a>
         </div>
     </section>
     {{/if}}

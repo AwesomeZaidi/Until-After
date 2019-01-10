@@ -2,28 +2,32 @@
 <main class="auth-page signup">
     <form class="auth-form" action="/signup" method="post">
         <legend>Until After Signup</legend>
-            <label for="firstName">First Name</label>
+            
+            <label for="invitecode">Have an invite code?</label>
+            <input type="text" name="invitecode" placeholder="Enter code here..." oninput="this.className = ''">
+            
+            <label for="firstName">First Name*</label>
             <input type="text" name="firstName" placeholder="Firt Name" oninput="this.className = ''">
             
-            <label for="lastName">Last Name</label>
+            <label for="lastName">Last Name*</label>
             <input type="text" name="lastName" placeholder="Last Name" oninput="this.className = ''">
             
-            <label for="email">Email</label>
+            <label for="email">Email*</label>
             <input type="email" name="email" placeholder="Email" oninput="this.className = ''">
             
-            <label for="number">Number</label>
+            <label for="number">Number*</label>
             <input type="number" name="number" placeholder="Phone Number" oninput="this.className = ''">
             
-            <label for="username">Username</label>
+            <label for="username">Username*</label>
             <input type="text" name="username" placeholder="Username" oninput="this.className = ''">
             
-            <label for="address">Address</label>
+            <label for="address">Address*</label>
             <input type="text" name="address" placeholder="Address" oninput="this.className = ''">
             
-            <label for="birthdate">Birthdate</label>
+            <label for="birthdate">Birthdate*</label>
             <input type="text" name="birthdate" placeholder="Birthdate" oninput="this.className = ''">
             
-            <label for="password">Password</label>
+            <label for="password">Password*</label>
             <input type="password" name="password" placeholder="Password" oninput="this.className = ''">    
             
             <button class="auth-btn" type="submit">Signup</button>

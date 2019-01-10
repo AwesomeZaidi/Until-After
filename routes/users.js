@@ -30,32 +30,36 @@ router.get('/login', (req,res) => {
 
 // POST SIGNUP
 router.post('/signup', (req, res) => {
-    console.log("req.body:", req.body);
-      
     const username = req.body.username;
-    User.findOne({username}, "username").then(user => { 
-    if(user) {
-        return res.status(401).send({ message: "Account with this username already exists" });
-    } else {
-            const user = new User(req.body);
-            const journal = new Journal();  
-            journal.save();
-            user.journal = journal;
-            //   SendGrid.sendWelcomeEmail(user);
-            // save the user and sign the jwt token in cookies.
-            user.save().then((user) => {
-                const token = jwt.sign({ _id: user._id }, process.env.SECRET, { expiresIn: "60 days" });
-                // set the cookie when someone signs up and logs in
-                res.cookie('nToken', token, { maxAge: 600000, httpOnly: true });
-                res.redirect("/");
-            }).catch(err => {
-                console.log(err.message);
-                return res.status(400).send({ err: err });
-            });
-        }
-  }).catch((err) => {
-      console.log("Error Message:", err);
-  });
+    const invitecode = req.body.invitecode;
+    
+    User.findById(invitecode).then((foundUser) => {
+            User.findOne({username}, "username").then(user => {
+                if(user) {
+                    return res.status(401).send({ message: "Account with this username already exists" });
+                } else {
+                        const user = new User(req.body);
+                        const journal = new Journal();  
+                        journal.save();
+                        user.journal = journal;
+                        //   SendGrid.sendWelcomeEmail(user);
+                        // save the user and sign the jwt token in cookies.
+                        user.save().then((user) => {
+                            const token = jwt.sign({ _id: user._id }, process.env.SECRET, { expiresIn: "60 days" });
+                            // set the cookie when someone signs up and logs in
+                            res.cookie('nToken', token, { maxAge: 600000, httpOnly: true });
+                            res.redirect("/");
+                        }).catch(err => {
+                            console.log(err.message);
+                            return res.status(400).send({ err: err });
+                        });
+                    }
+                }).catch((err) => {
+                    console.log("Error Message:", err);
+                });
+    }).catch((err) => {
+        return res.status(401).send({ message: "Found no user with that invite code!" });
+    })
 });
 
 // POST LOGIN
@@ -91,6 +95,12 @@ router.post('/login', (req,res) => {
         console.log(err);
     });
 })
+
+// LOGOUT
+router.get('/logout', (req, res) => {
+    res.clearCookie('nToken');
+    res.redirect('/');
+});
 
 // /* GET settings page. */
 // router.get('/settings', function(req, res, next) {

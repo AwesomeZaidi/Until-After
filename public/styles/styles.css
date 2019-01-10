@@ -313,4 +313,27 @@ main {
   margin: 1em 0em;
 }
 
+.locked-journal-view {
+  position: relative;
+  text-align: center;
+  background: url(/images/journal-locked.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100vh;
+  padding-top: 8em;
+}
+.locked-journal-view .locked-text {
+  font-size: 1.4em;
+  padding: 0em 1em;
+  font-weight: bolder;
+  color: #ffffff;
+  margin-bottom: 2em;
+}
+.locked-journal-view .locked-text a {
+  text-decoration: none;
+  color: #000000;
+}
+
 /*# sourceMappingURL=styles.css.map */

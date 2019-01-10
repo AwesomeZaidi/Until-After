@@ -1,0 +1,22 @@
+.locked-journal-view {
+    position: relative;
+    text-align: center;
+    background: url(/images/journal-locked.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 100vh;
+    padding-top: 8em; 
+    .locked-text {
+        font-size: 1.4em;
+        padding: 0em 1em;
+        font-weight: bolder;
+        color: $white;
+        margin-bottom: 2em;
+        a {
+            text-decoration: none;
+            color: #000000;
+        }
+    }
+}

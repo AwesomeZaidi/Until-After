@@ -1,1 +1,13 @@
-<h1>journal view</h1>
+<main class="locked-journal-view">
+    <h1>Until After</h1>
+    {{#if investigating}}
+    <p class="locked-text">This account has been requested to be opened and is currently under review. We're investigating whether this person is still alive or not. If you have any questions, please <a href="/contact">contact us.</a></p>         
+    {{/if}}
+    <p class="locked-text">This account is currently locked. If you are the account owner please <a href="/login">log in</a> to continue or <a href="/signup">create your own account</a></p> 
+
+    <a href="/login"><button class="btn">Login</button></a>
+</main>
+
+
+<style>
+</style>

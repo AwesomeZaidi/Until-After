@@ -8,9 +8,11 @@
     </section>
     {{!-- <div class="journal-wrapper"> --}}
     <section class="journal-area">
+            {{authenticatedUser.createdAt}}
+
         <div id="status" class="nochange save-text"></div>
         <form class="box journal-form" action="/saveJournalEntry?_method=PUT" id="journalEntryBox" method="post">
-            <textarea class="day" name="day"></textarea>
+            <textarea class="day" name="day">{{journal.day}}</textarea>
         </form>
     </section>
     <section class="journal-guide">

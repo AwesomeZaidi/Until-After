@@ -3,14 +3,13 @@ const router = express.Router();
 const Journal = require("../models/journal");
 
 router.get('/', function(req, res, next) {
-  console.log("loading journal...");
-  
   const currentUser = req.user;
-  console.log("currentUser:", currentUser);
   if (currentUser) {
-    console.log("rendering journal...");
-    
-    res.render('journal');
+    Journal.findById(currentUser.journal).then((journal) => {
+      res.render('journal', {journal} );
+    }).catch((err) => {
+      console.log(err);
+    })
   } else {
     console.log("no user found, redirecting to login...");
 

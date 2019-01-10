@@ -32,8 +32,10 @@ router.get('/login', (req,res) => {
 router.post('/signup', (req, res) => {
     const username = req.body.username;
     const invitecode = req.body.invitecode;
-    
-    User.findById(invitecode).then((foundUser) => {
+    if (invitecode) {
+        console.log("invite code is:", invitecode);
+        
+        User.findById(invitecode).then((foundUser) => {
             User.findOne({username}, "username").then(user => {
                 if(user) {
                     return res.status(401).send({ message: "Account with this username already exists" });
@@ -60,6 +62,31 @@ router.post('/signup', (req, res) => {
     }).catch((err) => {
         return res.status(401).send({ message: "Found no user with that invite code!" });
     })
+    } else {
+        User.findOne({username}, "username").then(user => {
+            if(user) {
+                return res.status(401).send({ message: "Account with this username already exists" });
+            } else {
+                    const user = new User(req.body);
+                    const journal = new Journal();  
+                    journal.save();
+                    user.journal = journal;
+                    //   SendGrid.sendWelcomeEmail(user);
+                    // save the user and sign the jwt token in cookies.
+                    user.save().then((user) => {
+                        const token = jwt.sign({ _id: user._id }, process.env.SECRET, { expiresIn: "60 days" });
+                        // set the cookie when someone signs up and logs in
+                        res.cookie('nToken', token, { maxAge: 600000, httpOnly: true });
+                        res.redirect("/");
+                    }).catch(err => {
+                        console.log(err.message);
+                        return res.status(400).send({ err: err });
+                    });
+                }
+            }).catch((err) => {
+                console.log("Error Message:", err);
+            });
+    }
 });
 
 // POST LOGIN
@@ -104,23 +131,19 @@ router.get('/logout', (req, res) => {
 
 /* GET user profile page. */
 router.get('/:id/journal', function(req, res, next) {
-    console.log("req.params:", req.params);
-
     User.findById(req.params.id).then((user) => {
         if (user.death == true) {
-            res.render('/public-journal-view', {user});
+            res.render('public-journal-view', {user});
         }
         else if (user.underInvestigation == true) {
-            const investigating = true
-            res.render('/journal-view', {investigating});
+            const underInvestigation = user.underInvestigation;
+            res.render('journal-view', {investigating});
         }
         else if (user.accountOpenRequested == false) {
-            res.render('/journal-view');
+            res.render('journal-view');
         }
     }).catch((err) => {
         return res.status(401).send({ message: "Found no user that unique ID!" });
-        console.log(err);
-        
     })
 })
 

@@ -23,7 +23,7 @@ const UserSchema = new Schema({
   journal : [{ type: Schema.Types.ObjectId, ref: "Journal"}],
   isAdmin: { type: Boolean, default: false },
   underInvestigation: { type: Boolean, default: false},
-  accessRequested: { type: Boolean, default: false},
+  accountOpenRequested: { type: Boolean, default: false},
   dead: { type: Boolean, default: false}
 });
 

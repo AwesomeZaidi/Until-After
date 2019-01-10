@@ -1,7 +1,10 @@
 .auth-page.signup.settings {
-    padding-top: 3em;
+    padding: 2em 0em;
     .settings-title, .back-link-text {  
         margin-left: 1em;
+    }
+    .back-link-text {
+        margin-bottom: 1em;
     }
     .invite-section {
         .copy-section {

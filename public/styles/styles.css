@@ -253,10 +253,13 @@ main {
   }
 }
 .auth-page.signup.settings {
-  padding-top: 3em;
+  padding: 2em 0em;
 }
 .auth-page.signup.settings .settings-title, .auth-page.signup.settings .back-link-text {
   margin-left: 1em;
+}
+.auth-page.signup.settings .back-link-text {
+  margin-bottom: 1em;
 }
 .auth-page.signup.settings .invite-section .copy-section {
   display: flex;

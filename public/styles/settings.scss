@@ -1,0 +1,49 @@
+.auth-page.signup.settings {
+    padding-top: 3em;
+    .settings-title, .back-link-text {  
+        margin-left: 1em;
+    }
+    .invite-section {
+        .copy-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 1em 0 0;
+            .code {
+                padding: .34em 0em;
+                width: 100%;
+            }
+            button {
+                border-radius: 0.2em;
+                background-color: #1C1C1C;
+                color: #F5F5F5;
+                border: none;
+                letter-spacing: 1px;
+                padding: .5em 2em;
+            }
+            button:hover {
+                background-color: #5cb85c;
+            }
+        }
+    }
+    .settings-title {
+        font-size: 1.7em;
+        font-weight: 800;
+        letter-spacing: 1px;
+    }
+    .invite-section {
+        text-align: center;
+        letter-spacing: 1px;
+        padding: 3em 1em;
+        .your-code {
+            border-bottom: 1px solid #ffffff;
+        }
+        .invite-text {
+            margin: 0em;
+        }
+    }
+
+    .auth-form.settings {
+        padding: 0px;
+    }
+}

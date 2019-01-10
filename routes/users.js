@@ -92,4 +92,13 @@ router.post('/login', (req,res) => {
     });
 })
 
+// /* GET settings page. */
+// router.get('/settings', function(req, res, next) {
+//     if (req.user) {
+//         res.redirect('/settings');
+//     } else {
+//         res.render('signup');
+//     }
+// })
+
 module.exports = router;

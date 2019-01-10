@@ -1,0 +1,38 @@
+{{!-- {{> header}} --}}
+<main class="auth-page signup settings">
+    <a class="back-link" href="/"><p class="back-link-text"> << Go Back</p></a>
+    <p class="settings-title">Your Settings</p>
+    <section class="invite-section">
+        <p class="invite-text">Invite friends to be able to request access to your account when you pass away by sharing them your unique access code.</p>
+        {{!-- <h4 class="your-code">{{authenticatedUser._id}}</h4> --}}
+            <div class="copy-section">
+                <input type="text" class="code" id="code" readonly="readonly" value="{{authenticatedUser._id}}">
+                <button class="copy-btn anim-hov-fast" onclick="copyText('code')">Copy</button>    
+            </div>
+    </section>
+    
+    <form class="auth-form settings" action="/settings?_method=PUT" method="post">
+            <label for="firstName">First Name</label>
+            <input type="text" name="firstName" placeholder="{{authenticatedUser.firstName}}" value="{{authenticatedUser.firstName}}" oninput="this.className = ''">
+            
+            <label for="lastName">Last Name</label>
+            <input type="text" name="lastName" placeholder="{{authenticatedUser.lastName}}" value="{{authenticatedUser.lastName}}" oninput="this.className = ''">
+            
+            <label for="email">Email</label>
+            <input type="email" name="email" placeholder="{{authenticatedUser.email}}" value="{{authenticatedUser.email}}" oninput="this.className = ''">
+            
+            <label for="number">Number</label>
+            <input type="number" name="number" placeholder="{{authenticatedUser.number}}" value="{{authenticatedUser.number}}" oninput="this.className = ''">
+            
+            <label for="username">Username</label>
+            <input type="text" name="username" placeholder="{{authenticatedUser.username}}" value="{{authenticatedUser.username}}" oninput="this.className = ''">
+            
+            <label for="address">Address</label>
+            <input type="text" name="address" placeholder="{{authenticatedUser.address}}" value="{{authenticatedUser.address}}" oninput="this.className = ''">
+            
+            <label for="birthdate">Birthdate</label>
+            <input type="text" name="birthdate" placeholder="{{authenticatedUser.birthdate}}" value="{{authenticatedUser.birthdate}}" oninput="this.className = ''">
+            
+            <button class="auth-btn" type="submit">Update</button>
+    </form>
+</main>

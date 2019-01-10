@@ -25,6 +25,22 @@ html, body {
   height: 80vh;
 }
 
+.anim-hov-fast {
+  -webkit-transition: background-color 0.5s ease-out;
+  -moz-transition: background-color 0.5s ease-out;
+  -o-transition: background-color 0.5s ease-out;
+  transition: background-color 0.5s ease-out;
+}
+
+p {
+  margin: 0em;
+}
+
+.back-link {
+  text-decoration: none;
+  color: #ffffff;
+}
+
 header {
   background-color: #44C0FF;
   height: 10vh;
@@ -235,6 +251,52 @@ main {
   .auth-page.signup {
     position: unset;
   }
+}
+.auth-page.signup.settings {
+  padding-top: 3em;
+}
+.auth-page.signup.settings .settings-title, .auth-page.signup.settings .back-link-text {
+  margin-left: 1em;
+}
+.auth-page.signup.settings .invite-section .copy-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1em 0 0;
+}
+.auth-page.signup.settings .invite-section .copy-section .code {
+  padding: 0.34em 0em;
+  width: 100%;
+}
+.auth-page.signup.settings .invite-section .copy-section button {
+  border-radius: 0.2em;
+  background-color: #1C1C1C;
+  color: #F5F5F5;
+  border: none;
+  letter-spacing: 1px;
+  padding: 0.5em 2em;
+}
+.auth-page.signup.settings .invite-section .copy-section button:hover {
+  background-color: #5cb85c;
+}
+.auth-page.signup.settings .settings-title {
+  font-size: 1.7em;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+.auth-page.signup.settings .invite-section {
+  text-align: center;
+  letter-spacing: 1px;
+  padding: 3em 1em;
+}
+.auth-page.signup.settings .invite-section .your-code {
+  border-bottom: 1px solid #ffffff;
+}
+.auth-page.signup.settings .invite-section .invite-text {
+  margin: 0em;
+}
+.auth-page.signup.settings .auth-form.settings {
+  padding: 0px;
 }
 
 /*# sourceMappingURL=styles.css.map */

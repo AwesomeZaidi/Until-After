@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt');
+const moment = require('moment');
 
 const UserSchema = new Schema({
   createdAt: { type: Date },
@@ -31,8 +32,13 @@ UserSchema.pre("save", function(next) {
   const now = new Date();
   this.updatedAt = now;
   if (!this.createdAt) {
-    this.createdAt = now;
-  }
+    const thisMoment = moment(this.createdAt).format("h:mm");
+    this.createdAt = thisMoment;
+    // this.createdAt = moment(now, 'HH:mm:ss').format('h:mm:ss A');
+    console.log("CREATED AT:", this.createdAt);
+    // function convert(input) {
+    //  return time;
+ }
 
   // ENCRYPT PASSWORD
   const user = this;

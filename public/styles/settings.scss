@@ -1,12 +1,18 @@
 .auth-page.signup.settings {
     padding: 2em 0em;
-    .settings-title, .back-link-text {  
-        margin-left: 1em;
+    .settings-nav {
+        margin-bottom: 2em;
+        .back-link-text {
+            margin-bottom: 1em;
+        }
+        .settings-title, .back-link-text {  
+            margin-left: 1em;
+        }
     }
-    .back-link-text {
-        margin-bottom: 1em;
-    }
-    .invite-section {
+    .info-section {
+        text-align: center;
+        letter-spacing: 1px;
+        padding: 1em;
         .copy-section {
             display: flex;
             justify-content: center;
@@ -28,25 +34,26 @@
                 background-color: #5cb85c;
             }
         }
+        .user {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            margin-top: .8em;
+            .user-name {
+                font-size: 1.2em;
+            }
+        }
     }
     .settings-title {
         font-size: 1.7em;
         font-weight: 800;
         letter-spacing: 1px;
     }
-    .invite-section {
-        text-align: center;
-        letter-spacing: 1px;
-        padding: 3em 1em;
-        .your-code {
-            border-bottom: 1px solid #ffffff;
-        }
-        .invite-text {
-            margin: 0em;
-        }
-    }
-
     .auth-form.settings {
         padding: 0px;
+    }
+    legend {
+        text-align: left;
+        margin: 1em 0em;    
     }
 }

@@ -25,6 +25,18 @@ html, body {
   height: 80vh;
 }
 
+.btn {
+  height: 3em;
+  cursor: pointer;
+  border-radius: 0.3em;
+  min-width: 126px;
+  background-color: #ffffff;
+  color: #44C0FF;
+  border: none;
+  display: inline-block;
+  font-size: 1em;
+}
+
 .anim-hov-fast {
   -webkit-transition: background-color 0.5s ease-out;
   -moz-transition: background-color 0.5s ease-out;
@@ -223,17 +235,6 @@ main {
     opacity: 1;
     /* Firefox */
   }
-  .auth-page form .auth-btn {
-    height: 3em;
-    cursor: pointer;
-    border-radius: 0.3em;
-    min-width: 126px;
-    background-color: #ffffff;
-    color: #44C0FF;
-    border: none;
-    display: inline-block;
-    font-size: 1em;
-  }
   .auth-page form .new-account-txt {
     color: #ffffff;
   }
@@ -255,23 +256,31 @@ main {
 .auth-page.signup.settings {
   padding: 2em 0em;
 }
-.auth-page.signup.settings .settings-title, .auth-page.signup.settings .back-link-text {
-  margin-left: 1em;
+.auth-page.signup.settings .settings-nav {
+  margin-bottom: 2em;
 }
-.auth-page.signup.settings .back-link-text {
+.auth-page.signup.settings .settings-nav .back-link-text {
   margin-bottom: 1em;
 }
-.auth-page.signup.settings .invite-section .copy-section {
+.auth-page.signup.settings .settings-nav .settings-title, .auth-page.signup.settings .settings-nav .back-link-text {
+  margin-left: 1em;
+}
+.auth-page.signup.settings .info-section {
+  text-align: center;
+  letter-spacing: 1px;
+  padding: 1em;
+}
+.auth-page.signup.settings .info-section .copy-section {
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 1em 0 0;
 }
-.auth-page.signup.settings .invite-section .copy-section .code {
+.auth-page.signup.settings .info-section .copy-section .code {
   padding: 0.34em 0em;
   width: 100%;
 }
-.auth-page.signup.settings .invite-section .copy-section button {
+.auth-page.signup.settings .info-section .copy-section button {
   border-radius: 0.2em;
   background-color: #1C1C1C;
   color: #F5F5F5;
@@ -279,27 +288,29 @@ main {
   letter-spacing: 1px;
   padding: 0.5em 2em;
 }
-.auth-page.signup.settings .invite-section .copy-section button:hover {
+.auth-page.signup.settings .info-section .copy-section button:hover {
   background-color: #5cb85c;
+}
+.auth-page.signup.settings .info-section .user {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 0.8em;
+}
+.auth-page.signup.settings .info-section .user .user-name {
+  font-size: 1.2em;
 }
 .auth-page.signup.settings .settings-title {
   font-size: 1.7em;
   font-weight: 800;
   letter-spacing: 1px;
 }
-.auth-page.signup.settings .invite-section {
-  text-align: center;
-  letter-spacing: 1px;
-  padding: 3em 1em;
-}
-.auth-page.signup.settings .invite-section .your-code {
-  border-bottom: 1px solid #ffffff;
-}
-.auth-page.signup.settings .invite-section .invite-text {
-  margin: 0em;
-}
 .auth-page.signup.settings .auth-form.settings {
   padding: 0px;
+}
+.auth-page.signup.settings legend {
+  text-align: left;
+  margin: 1em 0em;
 }
 
 /*# sourceMappingURL=styles.css.map */

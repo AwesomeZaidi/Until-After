@@ -27,6 +27,18 @@ html, body {
     height: 80vh;
 }
 
+.btn {
+    height: 3em;
+    cursor: pointer;
+    border-radius: .3em;
+    min-width: 126px;
+    background-color: #ffffff;
+    color: $blue;
+    border: none;
+    display: inline-block;
+    font-size: 1em;
+}
+
 .anim-hov-fast {
     -webkit-transition: background-color .5s ease-out;
     -moz-transition: background-color .5s ease-out;

@@ -1,8 +1,10 @@
 {{!-- {{> header}} --}}
 <main class="auth-page signup settings">
-    <a class="back-link" href="/"><p class="back-link-text"> << Go Back</p></a>
-    <p class="settings-title">Your Settings</p>
-    <section class="invite-section">
+    <section class="settings-nav">
+        <a class="back-link" href="/"><p class="back-link-text"> << Go Back</p></a>
+        <p class="settings-title">Your Settings</p>
+    </section>
+    <section class="info-section">
         <p class="invite-text">Invite friends to be able to request access to your account when you pass away by sharing them your unique access code.</p>
         {{!-- <h4 class="your-code">{{authenticatedUser._id}}</h4> --}}
             <div class="copy-section">
@@ -10,8 +12,19 @@
                 <button class="copy-btn anim-hov-fast" onclick="copyText('code')">Copy</button>    
             </div>
     </section>
-    
+    {{#if name}}
+    <section class="info-section">
+        <p>Request access to access to view the journal
+            of this person when they have passed away.
+        </p>
+        <div class="user">
+            <p class="user-name">{{name}}</p>
+            <button class="btn">Request Access</button>
+        </div>
+    </section>
+    {{/if}}
     <form class="auth-form settings" action="/settings?_method=PUT" method="post">
+            <legend>Your account settings</legend>
             <label for="firstName">First Name</label>
             <input type="text" name="firstName" placeholder="{{authenticatedUser.firstName}}" value="{{authenticatedUser.firstName}}" oninput="this.className = ''">
             

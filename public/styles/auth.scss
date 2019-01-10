@@ -46,17 +46,6 @@
                 transition: background-color 5000s ease-in-out 0s;
                 opacity: 1; /* Firefox */
             }
-            .auth-btn {
-                height: 3em;
-                cursor: pointer;
-                border-radius: .3em;
-                min-width: 126px;
-                background-color: #ffffff;
-                color: $blue;
-                border: none;
-                display: inline-block;
-                font-size: 1em;
-            }
             .new-account-txt {
                 color: #ffffff;
             }

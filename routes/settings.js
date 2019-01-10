@@ -7,13 +7,17 @@ const jwt = require('jsonwebtoken');
 
 /* GET settings page. */
 router.get('/settings', function(req, res, next) {
+    invitecode = req.user.invitecode;
     if (req.user) {
-        User.findById(req.user._id).then((user) => {
-            user.set(req.body).save();
-        }).catch((err) => {
-            console.log(err)
-        })
-        res.render('settings');
+        if (invitecode) {
+            User.findById(invitecode).then((friend) => {
+                const name = friend.firstName + " " + friend.firstName;
+                const id = friend._id;
+                res.render('settings', { name, id });
+            })
+        } else {
+            res.render('settings');
+        }
     } else {
         res.redirect('/login');
     };

@@ -1,35 +1,58 @@
 {{> journal-header }}
+    <main class="journal account-request-activated">
 
-<main class="journal">
-    <section class="choose-item">
-        <i class="far fa-sticky-note item-icons"></i>
-        <i class="fas fa-microphone item-icons"></i>
-        <i class="fas fa-camera item-icons"></i>
-    </section>
-    {{!-- <div class="journal-wrapper"> --}}
-    <section class="journal-area">
-            {{authenticatedUser.createdAt}}
+    {{#if accountOpenRequested}}
+        <p>Your account has been requested open. Please alert us immidiately if you are still alive and here.</p>
+        <button class="btn">Click This If You're Still Alive</button>
 
-        <div id="status" class="nochange save-text"></div>
-        <form class="box journal-form" action="/saveJournalEntry?_method=PUT" id="journalEntryBox" method="post">
-            <textarea class="day" name="day">{{journal.day}}</textarea>
-        </form>
-    </section>
-    <section class="journal-guide">
-        <p class="popup-question"><strong>How was today?</strong></p>
-        <div class="mood-choice">
-            <p>😃</p>
-            <p>😕</p>
-            <p>☹️</p>
-        </div>
-    </section>
-    {{!-- </div> --}}
-</main>
+        <p>If you don't contact us back within 30 days and your death request is verified your account will be opened.</p>
 
-<style>
-    #status { font-size: 13px; }
-    #status.nochange { color: #aaa; }
-    #status.pending { color: #a00; }
-    #status.saved { color: #0a0; }
-    #commentBox { width: 400px; height: 200px; }
-</style>
+        <style>
+            .journal.account-request-activated {
+                height: 88vh;
+                padding: 1em 1em;
+                text-align: center;
+                justify-content: unset;
+            }
+            .journal > *
+             {
+                 margin: 1em 0em;
+             }
+            p {
+                font-size: 1em;
+            }
+        </style>
+    {{else}}
+        <section class="choose-item">
+            <i class="far fa-sticky-note item-icons"></i>
+            <i class="fas fa-microphone item-icons"></i>
+            <i class="fas fa-camera item-icons"></i>
+        </section>
+        {{!-- <div class="journal-wrapper"> --}}
+        <section class="journal-area">
+                {{authenticatedUser.createdAt}}
+
+            <div id="status" class="nochange save-text"></div>
+            <form class="box journal-form" action="/saveJournalEntry?_method=PUT" id="journalEntryBox" method="post">
+                <textarea class="day" name="day">{{journal.day}}</textarea>
+            </form>
+        </section>
+        <section class="journal-guide">
+            <p class="popup-question"><strong>How was today?</strong></p>
+            <div class="mood-choice">
+                <p>😃</p>
+                <p>😕</p>
+                <p>☹️</p>
+            </div>
+        </section>
+        {{!-- </div> --}}
+    </main>
+
+    <style>
+        #status { font-size: 13px; }
+        #status.nochange { color: #aaa; }
+        #status.pending { color: #a00; }
+        #status.saved { color: #0a0; }
+        #commentBox { width: 400px; height: 200px; }
+    </style>
+{{/if}}

@@ -34,7 +34,8 @@ router.get('/', function(req, res, next) {
   const currentUser = req.user;
   if (currentUser) {
     Journal.findById(currentUser.journal).then((journal) => {
-      res.render('journal', {journal} );
+      const accountOpenRequested = currentUser.accountOpenRequested;
+      res.render('journal', {journal, accountOpenRequested} );
     }).catch((err) => {
       console.log(err);
     })

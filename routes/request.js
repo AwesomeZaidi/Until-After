@@ -20,6 +20,7 @@ router.post('/:id/requestAccess', function(req, res) {
         user.accountOpenRequested = true;
         user.underInvestigation = true;
         user.save();
+        // now we have to trigger some functions from another API to alert the user.
         accessRequest.save().then(() => {
             res.redirect(`/${id}/journal`);
         }).catch(console.err)

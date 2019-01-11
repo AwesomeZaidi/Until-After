@@ -3,10 +3,13 @@
     <section class="settings-nav">
         <a class="back-link" href="/"><p class="back-link-text"> << Go Back</p></a>
         <p class="settings-title">Your Settings</p>
-        <p>Friends:</p>
+        <p class="settings-title friends">Friends with ability to request access to view your accout when you die.</p>
         {{#each friends}}
-            {{this.firstName}}
+            <p>{{this.firstName}} {{this.lastName}}</p>
+            {{!-- <p>{{this.friendsId}}</p> --}}
+            
         {{/each}}
+        <button class="btn">Revoke</button>
     </section>
     <section class="info-section">
         <p class="invite-text">Invite friends to be able to request access to your account when you pass away by sharing them your unique access code.</p>

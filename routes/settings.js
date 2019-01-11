@@ -6,21 +6,36 @@ const jwt = require('jsonwebtoken');
 
 
 /* GET settings page. */
-router.get('/settings', (req, res)=> {
+router.get('/settings', (req, res) => {
     const invitecode = req.user.invitecode;
-    // const friendsIds = req.user.friendsWithPermission;
+    const friendsIds = req.user.friendsWithPermission;
     // console.log("friendsIds:", friendsIds);
     // const friends = [];
     if (req.user) {
-        User.findById(req.user.id).populate('friendsWithPermission').then((friends) => {
+        // Users.find({_id: {$in:friendsIds} }).then
+
+        User.findById(req.user.id).populate('friendsWithPermission').then((friends) => {           
             if (invitecode) {
                 User.findById(invitecode).then((friend) => {
                     const name = friend.firstName + " " + friend.firstName;
-                    const id = friend._id;
-                    res.render('settings', { name, id, friends });
-                })
+                    const id = friend._id; 
+                    User.find({
+                        '_id': {
+                          $in: friendsIds
+                        }
+                      }, function(err, friends) {
+                        res.render('settings', { name, id, friends });
+                      });
+                }).catch(console.err)
             } else {
-                res.render('settings', { friends });
+                User.find({
+                    '_id': {
+                      $in: friendsIds
+                    }
+                  }, function(err, friends) {
+                    res.render('settings', { friends });
+                  });
+                // res.render('settings', { friends });
             }
             // res.render('settings', { friends });            
         }).catch(console.err);

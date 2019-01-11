@@ -304,6 +304,11 @@ main {
   font-size: 1.7em;
   font-weight: 800;
   letter-spacing: 1px;
+  margin-bottom: 1em;
+}
+.auth-page.signup.settings .settings-title.friends {
+  font-size: 1.1em;
+  font-weight: 300;
 }
 .auth-page.signup.settings .auth-form.settings {
   padding: 0px;

@@ -3,6 +3,10 @@
     <section class="settings-nav">
         <a class="back-link" href="/"><p class="back-link-text"> << Go Back</p></a>
         <p class="settings-title">Your Settings</p>
+        <p>Friends:</p>
+        {{#each friends}}
+            {{this.firstName}}
+        {{/each}}
     </section>
     <section class="info-section">
         <p class="invite-text">Invite friends to be able to request access to your account when you pass away by sharing them your unique access code.</p>
@@ -12,7 +16,6 @@
                 <button class="copy-btn anim-hov-fast" onclick="copyText('code')">Copy</button> 
             </div>
     </section>
-    <p>{{friends}}</p>
     {{#if name}}
     <section class="info-section">
         <p>Request access to access to view the journal

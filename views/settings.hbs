@@ -6,12 +6,12 @@
         <p class="settings-title friends">Friends with ability to request access to view your accout when you die.</p>
         <div class="user-group">
         {{#each friends}}
-        <form class="revoke-form" action="/revoke/{{this.id}}">
-        <div class="user">
-            <p class="user-name">{{this.firstName}} {{this.lastName}}</p>
-            <button type="submit" class="btn revoke">Revoke</button>
+        <form class="revoke-form" action="/revoke/{{this.id}}" method="post">
+            <div class="user">
+                <p class="user-name">{{this.firstName}} {{this.lastName}}</p>
+                <button type="submit" class="btn revoke">Revoke</button>
+            </div>
         </form>
-        </div>
         {{/each}}
         </div>
     </section>

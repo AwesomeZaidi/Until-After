@@ -32,10 +32,15 @@ router.get('/login', (req,res) => {
 router.post('/signup', (req, res) => {
     const username = req.body.username;
     const invitecode = req.body.invitecode;
-    if (invitecode) {
-        console.log("invite code is:", invitecode);
-        
+    // console.log("invitecodehere:", invitecode);
+    // console.log("type ic len:", invitecode.length);
+    // console.log("type:", typeof invitecode);
+    // console.log("hereee");
+    if (invitecode.length >= 1) {
+        console.log("in if");
         User.findById(invitecode).then((foundUser) => {
+            console.log("foundUser:", foundUser);
+            
             User.findOne({username}, "username").then(user => {
                 if(user) {
                     return res.status(401).send({ message: "Account with this username already exists" });
@@ -44,6 +49,9 @@ router.post('/signup', (req, res) => {
                         const journal = new Journal();  
                         journal.save();
                         user.journal = journal;
+                        //  user.friendsWithPermission
+                        foundUser.friendsWithPermission.push(user);
+                        foundUser.save();
                         //   SendGrid.sendWelcomeEmail(user);
                         // save the user and sign the jwt token in cookies.
                         user.save().then((user) => {
@@ -63,6 +71,7 @@ router.post('/signup', (req, res) => {
         return res.status(401).send({ message: "Found no user with that invite code!" });
     })
     } else {
+        console.log(" in else");
         User.findOne({username}, "username").then(user => {
             if(user) {
                 return res.status(401).send({ message: "Account with this username already exists" });
@@ -83,9 +92,7 @@ router.post('/signup', (req, res) => {
                         return res.status(400).send({ err: err });
                     });
                 }
-            }).catch((err) => {
-                console.log("Error Message:", err);
-            });
+            }).catch(console.err)
     }
 });
 

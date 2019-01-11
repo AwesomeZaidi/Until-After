@@ -12,6 +12,7 @@
                 <button class="copy-btn anim-hov-fast" onclick="copyText('code')">Copy</button> 
             </div>
     </section>
+    <p>{{friends}}</p>
     {{#if name}}
     <section class="info-section">
         <p>Request access to access to view the journal
@@ -46,6 +47,10 @@
             <label for="birthdate">Birthdate</label>
             <input type="text" name="birthdate" placeholder="{{authenticatedUser.birthdate}}" value="{{authenticatedUser.birthdate}}" oninput="this.className = ''">
             
+            <label for="invitecode">Access Code?</label>
+            <input type="text" name="invitecode" placeholder="{{authenticatedUser.invitecode}}" value="{{authenticatedUser.invitecode}}" oninput="this.className = ''">
+            
+
             <button class="btn" type="submit">Update</button>
     </form>
 </main>

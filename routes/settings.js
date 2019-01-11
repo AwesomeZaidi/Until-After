@@ -8,12 +8,14 @@ const jwt = require('jsonwebtoken');
 /* GET settings page. */
 router.get('/settings', function(req, res, next) {
     invitecode = req.user.invitecode;
+    
     if (req.user) {
         if (invitecode) {
             User.findById(invitecode).then((friend) => {
                 const name = friend.firstName + " " + friend.firstName;
                 const id = friend._id;
-                res.render('settings', { name, id });
+                const friends = req.user.friendsWithPermission;
+                res.render('settings', { name, id, friends });
             })
         } else {
             res.render('settings');

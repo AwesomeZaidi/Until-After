@@ -1,4 +1,3 @@
-// require('dotenv').config(); // later for env variables we need.
 require('dotenv').config();
 const express = require('express');
 const path = require('path');
@@ -10,6 +9,7 @@ const logger = require('morgan');
 const jwt = require('jsonwebtoken');
 const methodOverride = require('method-override');
 const expressFileupload = require('express-fileupload');
+// const twilio = require('twilio');
 
 const app = express();
 // Use Body Parser
@@ -40,6 +40,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(__dirname + '../public'));
 app.use(methodOverride('_method'));
 app.use(expressFileupload({}));
+// app.use(twilio({}));
 
 // require routers (mountable route handlers. This instead of passing in the whole app to each module.)
 const checkAuth = require('./middleware/checkAuth');
@@ -47,6 +48,8 @@ const journalRouter = require('./routes/journal');
 const usersRouter = require('./routes/users');
 const settingsRouter = require('./routes/settings');
 const requestRouter = require('./routes/request');
+// const twilioSms = require('./routes/send_sms');
+
 
 
 // specific custom auth checking middleware.
@@ -57,7 +60,7 @@ app.use('/', journalRouter);
 app.use('/', usersRouter);
 app.use('/', settingsRouter);
 app.use('/', requestRouter);
-
+// app.use('/', twilioSms);
 
 // error handler - later.
 app.use(function(err, req, res, next) {

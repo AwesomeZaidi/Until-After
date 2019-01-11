@@ -13,7 +13,7 @@ const UserSchema = new Schema({
   username: { type: String, required: true },
   password: { type: String, select: false },
   address: { type: String },
-  friend : { type: Schema.Types.ObjectId, ref: "User", required: false },
+  friendsWithPermission : [{ type: Schema.Types.ObjectId, ref: "User", default:"" }],
   // city: { type: String },
   // state: { type: String },
   // zipcode: { type: String },

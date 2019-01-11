@@ -10,7 +10,7 @@ const jwt = require('jsonwebtoken');
 const methodOverride = require('method-override');
 const expressFileupload = require('express-fileupload');
 //Initialize a REST client in a single line:
-var client = require('twilio')('AC84bbe3b45291b3a4a58368eddfa9e6bb', '1fcca564e717fa2b4431ba0942fdb642');
+// var client = require('twilio')('AC84bbe3b45291b3a4a58368eddfa9e6bb', '1fcca564e717fa2b4431ba0942fdb642');
 
 const app = express();
 // Use Body Parser
@@ -44,7 +44,7 @@ app.use(expressFileupload({}));
 
 // require routers (mountable route handlers. This instead of passing in the whole app to each module.)
 const checkAuth = require('./middleware/checkAuth');
-const sendText = require('./middleware/sendText');
+// const sendText = require('./middleware/sendText');
 const journalRouter = require('./routes/journal');
 const usersRouter = require('./routes/users');
 const settingsRouter = require('./routes/settings');
@@ -57,7 +57,7 @@ const requestRouter = require('./routes/request');
 
 // app.use(checkAuth);
 app.use('/', checkAuth);
-app.use('/login', sendText);
+// app.use('/login', sendText);
 
 app.use('/', journalRouter);
 app.use('/', usersRouter);

@@ -2,10 +2,6 @@ const express = require('express');
 const router = express.Router();
 const Journal = require("../models/journal");
 const User = require("../models/user");
-const twilio = require("./twilio.js");
-console.dir(twilio);  
-
-// console.dir(router);
 
 /* GET user journal page. */
 router.get('/:id/journal', function(req, res, next) {
@@ -35,8 +31,6 @@ router.get('/:id/journal', function(req, res, next) {
 })
 
 router.get('/', function(req, res, next) {
-  console.log("in route");
-  twilio.sendText();
 
   const currentUser = req.user;
   if (currentUser) {

@@ -3,6 +3,7 @@ var router = express.Router();
 const User = require("../models/user");
 const Journal = require("../models/journal");
 const AccessRequest = require("../models/accessRequest");
+const twilio = require("./twilio.js");
 
 router.get('/:id/requestAccess', (req, res) => {
     User.findById(req.user.invitecode).then((user) => {
@@ -17,8 +18,10 @@ router.post('/:id/requestAccess', function(req, res) {
     const id = req.params.id;
     User.findById(id).then((user) => {
         const accessRequest = new AccessRequest(req.body);
+        // const num = user.number;
         user.accountOpenRequested = true;
         user.underInvestigation = true;
+        twilio.sendText();
         user.save();
         // now we have to trigger some functions from another API to alert the user.
         accessRequest.save().then(() => {

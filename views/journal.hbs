@@ -3,7 +3,9 @@
 
     {{#if accountOpenRequested}}
         <p>Your account has been requested open. Please alert us immidiately if you are still alive and here.</p>
-        <button class="btn">Click This If You're Still Alive</button>
+        {{!-- <form action="/imalive/{{authenticatedUser.id}}"> --}}
+            <button type="submit" class="btn">Click This If You're Still Alive</button>
+        {{!-- </form> --}}
 
         <p>If you don't contact us back within 30 days and your death request is verified your account will be opened.</p>
 

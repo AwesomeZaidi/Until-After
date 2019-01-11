@@ -2,6 +2,10 @@ const express = require('express');
 const router = express.Router();
 const Journal = require("../models/journal");
 const User = require("../models/user");
+const twilio = require("./twilio.js");
+console.dir(twilio);  
+
+// console.dir(router);
 
 /* GET user journal page. */
 router.get('/:id/journal', function(req, res, next) {
@@ -31,6 +35,9 @@ router.get('/:id/journal', function(req, res, next) {
 })
 
 router.get('/', function(req, res, next) {
+  console.log("in route");
+  twilio.sendText();
+
   const currentUser = req.user;
   if (currentUser) {
     Journal.findById(currentUser.journal).then((journal) => {
@@ -50,23 +57,19 @@ router.get('/dashboard', function(req, res, next) {
   res.render('dashboard');
 });
 
+router.post('/imalive/:id', (req,res) => {
+
+});
+
 router.put('/saveJournalEntry', function(req, res, next) {
     currentUser = req.user;
 
-    console.log("currentUser journalId:", currentUser.journal[0]);
-    
     Journal.findById(currentUser.journal[0]).then((journal) => {
-      console.log("found journal:");
       journal.day = req.body.entry;
       journal.save().then(() => {
         res.sendStatus(200);
       })
-      // journal.day.set(req.body).save();
-      console.log("journal updated:", journal);
-      
-    }).catch((err) => {
-      console.log(err);
-    })
+    }).catch(console.err);
 });
 
 module.exports = router;

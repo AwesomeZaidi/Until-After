@@ -22,7 +22,6 @@ router.post('/:id/requestAccess', function(req, res) {
         user.save();
         // now we have to trigger some functions from another API to alert the user.
         accessRequest.save().then(() => {
-            // sendText();
             res.redirect(`/${id}/journal`);
         }).catch(console.err)
     }).catch((err) => {

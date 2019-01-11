@@ -10,11 +10,9 @@ const jwt = require('jsonwebtoken');
 const methodOverride = require('method-override');
 const expressFileupload = require('express-fileupload');
 //Initialize a REST client in a single line:
-// var client = require('twilio')('AC84bbe3b45291b3a4a58368eddfa9e6bb', '1fcca564e717fa2b4431ba0942fdb642');
 
 const app = express();
 // Use Body Parser
-app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 // Add after body parser initialization!
 app.use(expressValidator());
@@ -49,9 +47,7 @@ const journalRouter = require('./routes/journal');
 const usersRouter = require('./routes/users');
 const settingsRouter = require('./routes/settings');
 const requestRouter = require('./routes/request');
-// const twilioSms = require('./services/send_sms');
-
-
+const twilio = require('./routes/twilio');
 
 // specific custom auth checking middleware.
 
@@ -63,7 +59,7 @@ app.use('/', journalRouter);
 app.use('/', usersRouter);
 app.use('/', settingsRouter);
 app.use('/', requestRouter);
-// app.use('/', twilioSms);
+// app.use('/', twilio);
 
 // error handler - later.
 app.use(function(err, req, res, next) {

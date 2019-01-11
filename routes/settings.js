@@ -74,9 +74,17 @@ router.get('/settings', (req, res) => {
 });
 
 router.put('/settings', function(req, res, next) {
+    console.log("req.body:", req.body);
+    
     if (req.user) {
         User.findById(req.user.id).then((user) => {
-            user.set(req.body).save();
+            user.set(req.body).save();            
+            if (req.body.invitecode) {
+                User.findById(req.body.invitecode).then((friend) => {
+                    friend.friendsWithPermission.unshift(user)
+                    friend.save();
+                }).catch(console.err)
+            }
             res.redirect('/settings');
         }).catch((err) => {
             console.log(err)

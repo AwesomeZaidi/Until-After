@@ -6,22 +6,27 @@ const jwt = require('jsonwebtoken');
 
 
 /* GET settings page. */
-router.get('/settings', function(req, res, next) {
+router.get('/settings', (req, res)=> {
     const invitecode = req.user.invitecode;
     const friendsIds = req.user.friendsWithPermission;
-    if (req.user) { // check to see if we have a user.
-        const friends = User.find(friendsIds); // find returns a cursor. An array of any objects it finds.
-        console.log("FRIENDS;", friends);
-        
-        if (invitecode) { // check if our user has an accesscode to someones account
-            User.findById(invitecode).then((friend) => { // if so, find who's it is.
+    const friends = [];
+    if (req.user) {
+        async function printFiles () {
+            const files = await getFilePaths();
+          
+            for (const file of files) {
+              const contents = await fs.readFile(file, 'utf8');
+              console.log(contents);
+            }
+          }
+        if (invitecode) {
+            User.findById(invitecode).then((friend) => {
                 const name = friend.firstName + " " + friend.firstName;
                 const id = friend._id;
-                // next() //read more into what this does exactly, where we go next?           
-                res.render('settings', { name, id, friends });
+                res.render('settings', { name, id });
             })
         } else {
-            res.render('settings', { friends });
+            res.render('settings');
         }
     } else {
         res.redirect('/login');

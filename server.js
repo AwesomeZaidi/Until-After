@@ -9,7 +9,8 @@ const logger = require('morgan');
 const jwt = require('jsonwebtoken');
 const methodOverride = require('method-override');
 const expressFileupload = require('express-fileupload');
-// const twilio = require('twilio');
+//Initialize a REST client in a single line:
+var client = require('twilio')('AC84bbe3b45291b3a4a58368eddfa9e6bb', '1fcca564e717fa2b4431ba0942fdb642');
 
 const app = express();
 // Use Body Parser
@@ -40,15 +41,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(__dirname + '../public'));
 app.use(methodOverride('_method'));
 app.use(expressFileupload({}));
-// app.use(twilio({}));
 
 // require routers (mountable route handlers. This instead of passing in the whole app to each module.)
 const checkAuth = require('./middleware/checkAuth');
+const sendText = require('./middleware/sendText');
 const journalRouter = require('./routes/journal');
 const usersRouter = require('./routes/users');
 const settingsRouter = require('./routes/settings');
 const requestRouter = require('./routes/request');
-// const twilioSms = require('./routes/send_sms');
+// const twilioSms = require('./services/send_sms');
 
 
 
@@ -56,6 +57,8 @@ const requestRouter = require('./routes/request');
 
 // app.use(checkAuth);
 app.use('/', checkAuth);
+app.use('/login', sendText);
+
 app.use('/', journalRouter);
 app.use('/', usersRouter);
 app.use('/', settingsRouter);
@@ -72,6 +75,7 @@ app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     res.render('error');
 });
+
 
 // for heroku
 const port = process.env.PORT || 3000;

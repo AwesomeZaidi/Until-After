@@ -1,11 +1,12 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 const User = require("../models/user");
 const Journal = require("../models/journal");
 const jwt = require('jsonwebtoken');
+const validator = require('validator');
 
 /* GET signup page. */
-router.get('/signup', function(req, res, next) {
+router.get('/signup', (req, res) => {
     if (req.user) {
         res.redirect('/dashboard');
     } else {
@@ -32,15 +33,9 @@ router.get('/login', (req,res) => {
 router.post('/signup', (req, res) => {
     const username = req.body.username;
     const invitecode = req.body.invitecode;
-    // console.log("invitecodehere:", invitecode);
-    // console.log("type ic len:", invitecode.length);
-    // console.log("type:", typeof invitecode);
-    // console.log("hereee");
+
     if (invitecode.length >= 1) {
-        console.log("in if");
-        User.findById(invitecode).then((foundUser) => {
-            console.log("foundUser:", foundUser);
-            
+        User.findById(invitecode).then((foundUser) => {   
             User.findOne({username}, "username").then(user => {
                 if(user) {
                     return res.status(401).send({ message: "Account with this username already exists" });
@@ -49,29 +44,24 @@ router.post('/signup', (req, res) => {
                         const journal = new Journal();  
                         journal.save();
                         user.journal = journal;
-                        //  user.friendsWithPermission
                         foundUser.friendsWithPermission.push(user);
                         foundUser.save();
-                        //   SendGrid.sendWelcomeEmail(user);
-                        // save the user and sign the jwt token in cookies.
-                        user.save().then((user) => {
+                        //TODO: SendGrid.sendWelcomeEmail(user);
+                        user.save().then((user) => {    // save the user and sign the jwt token in cookies.
                             const token = jwt.sign({ _id: user._id }, process.env.SECRET, { expiresIn: "60 days" });
-                            // set the cookie when someone signs up and logs in
-                            res.cookie('nToken', token, { maxAge: 600000, httpOnly: true });
+                            
+                            res.cookie('nToken', token, { maxAge: 600000, httpOnly: true });    // set the cookie when someone signs up and logs in
                             res.redirect("/");
                         }).catch(err => {
                             console.log(err.message);
                             return res.status(400).send({ err: err });
                         });
                     }
-                }).catch((err) => {
-                    console.log("Error Message:", err);
-                });
+                }).catch(console.err)
     }).catch((err) => {
         return res.status(401).send({ message: "Found no user with that invite code!" });
     })
     } else {
-        console.log(" in else");
         User.findOne({username}, "username").then(user => {
             if(user) {
                 return res.status(401).send({ message: "Account with this username already exists" });
@@ -119,15 +109,12 @@ router.post('/login', (req,res) => {
             // Set a cookie and redirect to root
             res.cookie("nToken", token, {maxAge: 900000, httpOnly:true});
             User.findById(user._id).then(user => {
-                console.log("logging this user in:", user);
                 res.redirect('/');
             })
             
         });
     })
-    .catch(err => {
-        console.log(err);
-    });
+    .catch(console.err);
 })
 
 // LOGOUT

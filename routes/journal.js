@@ -52,7 +52,25 @@ router.get('/dashboard', function(req, res, next) {
 });
 
 router.post('/imalive/:id', (req,res) => {
-
+  const user = req.user;
+  if (user) { //check if there's a user
+    if (user.id == req.params.id) { // check if it's the right user
+      user.accountOpenRequested = false;
+      user.underInvestigation = false;
+      user.save().then(() => {
+        res.redirect('/');
+      }).catch(console.err);
+      // DON'T KNOW HOW TO DO THIS SO MAYBE WE CAN DO IT LATER ACTUALLY!
+      // go through each of the users friendsWithPermissionsId's
+      // set accountRequested = false
+      // find out who sent in this request?
+    } else {
+      return res.status(401).send({ message: "You do not have access to this user!" });      
+    }
+  }
+  else {
+    res.redirect('/login');
+  }
 });
 
 router.put('/saveJournalEntry', function(req, res, next) {

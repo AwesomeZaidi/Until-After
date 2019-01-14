@@ -52,11 +52,24 @@ router.get('/dashboard', (req, res) => {
   currentUser = req.user;
 
   if (currentUser) {
+    // console.log("curr user:", currentUser);
+    
     // for all the users journal objects, show all the strings in the entries array one by one.
+    const journalsIds = currentUser.journals;
+    // console.log("journalsIds:", journalsIds);
+    
+    Journal.find({
+      '_id': {
+        $in: journalsIds
+      }
+    }, function(err, journals) {
+      console.log("journals:", journals);
+      
+      res.render('dashboard', { journals });
+    });
   } else { 
     res.redirect('/login');
   }
-  res.render('dashboard');
 });
 
 router.post('/imalive/:id', (req,res) => {

@@ -10,7 +10,6 @@ const jwt = require('jsonwebtoken');
 const methodOverride = require('method-override');
 const expressFileupload = require('express-fileupload');
 const schedule = require('node-schedule');
-
 //Initialize a REST client in a single line:
 
 const app = express();
@@ -26,7 +25,14 @@ const exphbs = require('express-handlebars');
 app.engine('hbs', exphbs({
   defaultLayout: "main",
   extname: ".hbs",
-  helpers: require("handlebars-helpers")()
+  helpers: {
+    dotdotdot: function(str) {
+      if (str.length > 10) {
+        return str.substring(0,35) + '...';
+      }
+      return str;
+    }
+  }
 }));
 app.set('view engine', 'hbs');
 

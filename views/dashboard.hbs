@@ -4,8 +4,25 @@
     <section class="journal-view">
         <p class="journal-weeks-label">Your Notes</p>
         <section>
-            <p><strong>journal notes here...</strong></p>
+            {{#each journals}}
+            <input type="hidden" name="journal-index-{{@index}}" value="{{@index}}">
+            {{!-- there could be some way to do it like this like maybe in some js --}}
+                {{#each this.entries}}
+                    <form action="/" method="get">
+                        <input type="hidden" name="entry-index-{{@index}}" value="{{@index}}">
+                        <button type="submit"><h3>{{ dotdotdot this }}</h3></button>
+                    </form>
+                {{/each}}
+            {{/each}}
         </section>
         {{!-- <canvas class="journal-view-box" id="myCanvas" ></canvas> --}}
     </section>
 </main>
+
+<style>
+    form {
+        border-bottom: 1px solid;
+        border-color: rgba(0, 0, 0, 0.144);
+        margin-left: 1em;
+    }
+</style>

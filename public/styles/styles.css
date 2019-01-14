@@ -30,8 +30,9 @@ html, body {
   cursor: pointer;
   border-radius: 0.3em;
   min-width: 126px;
-  background-color: #ffffff;
-  color: #44C0FF;
+  background-color: #151515;
+  letter-spacing: 1px;
+  color: #ffffff;
   border: none;
   display: inline-block;
   font-size: 1em;
@@ -54,7 +55,11 @@ p {
 }
 
 header {
-  background-color: transparent;
+  background: url(/images/paperbg.png) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
   height: 10vh;
 }
 header nav {
@@ -87,7 +92,11 @@ header nav .nav-items .left i {
 }
 
 main {
-  background-color: #44C0FF;
+  background: url(/images/paperbg.png) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 @media (min-width: 310px) {
@@ -181,8 +190,8 @@ main {
     height: 90vh;
   }
   .dashboard .journal-view .journal-weeks-label {
-    text-align: center;
-    margin: 0;
+    text-align: left;
+    margin-left: 1em;
     display: block;
     font-size: 1.6em;
     font-weight: 800;
@@ -207,7 +216,7 @@ main {
     position: fixed;
     z-index: 1;
     width: 100vw;
-    color: #ffffff;
+    color: #151515;
   }
   .auth-page .top {
     width: 100vw;
@@ -239,11 +248,11 @@ main {
     border-top: none;
     border-right: none;
     border-left: none;
-    border-bottom: solid #ffffff;
+    border-bottom: solid #E7AC03;
     outline: none;
     transition: all 0.3s ease-in-out;
     background: rgba(255, 255, 255, 0.05);
-    color: #ffffff;
+    color: #151515;
   }
   .auth-page form input::placeholder {
     /* Chrome, Firefox, Opera, Safari 10.1+ */
@@ -256,14 +265,15 @@ main {
     color: #ffffff;
   }
   .auth-page button > a {
-    color: #ffffff;
+    color: #E7AC03;
   }
   .auth-page .other-text {
     margin: 0em;
   }
   .auth-page .other-text a {
     text-decoration: none;
-    color: white;
+    color: #E7AC03;
+    margin-top: 1em;
   }
 
   .auth-page.signup {

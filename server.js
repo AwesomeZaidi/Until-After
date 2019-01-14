@@ -32,6 +32,7 @@ app.engine('hbs', exphbs({
       }
       return str;
     }
+    // insert more helper functions as i please. :)
   }
 }));
 app.set('view engine', 'hbs');

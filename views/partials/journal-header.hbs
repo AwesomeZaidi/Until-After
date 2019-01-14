@@ -6,7 +6,9 @@
       </div>
       <div class="right">
         <form action="/newEntryInJournal" class="plus-btn" method="post">
-          <button type="submit"><i class="fas fa-plus menu-item"></i></button>
+          <input type="hidden" name="journalId" value={{journal._id}}>
+          <button type="submit"><i class="far fa-sticky-note"></i></button>
+          {{!-- far fa-sticky-note --}}
         </form>
         <a href="/settings"><i class="fas fa-cog menu-item"></i></a>
         <a href="/logout"><i class="fas fa-sign-out-alt"></i></a>

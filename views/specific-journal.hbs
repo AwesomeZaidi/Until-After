@@ -37,7 +37,7 @@
 
             <div id="status" class="nochange save-text"></div>
             <form class="box journal-form" action="/saveJournalEntry?_method=PUT" id="journalEntryBox" method="post">
-                <input type="hidden" name="journalId" value="{{journal._id}}">
+                <input type="hidden" id="journalId" name="journalId" value="{{journal._id}}">
                 <input type="hidden" name="entryIndex" value="{{entryIndex}}">
                 <textarea class="entry" name="entry">{{entry}}</textarea>
             </form>

@@ -4,7 +4,10 @@
       <div class="left">
       </div>
       <div class="right">
-        <a href="/"><i class="far fa-sticky-note item-icons"></i></a>
+        <form action="/newEntryInJournal" class="plus-btn" method="post">
+          <input type="hidden" name="journalId" value={{journal._id}}>
+          <button type="submit"><i class="far fa-sticky-note"></i></button>
+        </form>
         <a href="/addmilestone"></a><i class="fas fa-plus menu-item"></i>
         <a href="/settings"><i class="fas fa-cog menu-item"></i></a>
         <a href="/logout"><i class="fas fa-sign-out-alt"></i></a>

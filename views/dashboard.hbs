@@ -5,10 +5,10 @@
         <p class="journal-weeks-label">Your Notes</p>
         <section>
             {{#each journals}}
-            <input type="hidden" name="journal-index-{{@index}}" value="{{@index}}">
             {{!-- there could be some way to do it like this like maybe in some js --}}
                 {{#each this.entries}}
-                    <form action="/" method="get">
+                    <form action="/journal/{{@../index}}/{{@index}}" method="get">
+                        <input type="hidden" name="journal-index-{{@../index}}" value="{{@../index}}"></input>
                         <input type="hidden" name="entry-index-{{@index}}" value="{{@index}}">
                         <button type="submit"><h3>{{ dotdotdot this }}</h3></button>
                     </form>

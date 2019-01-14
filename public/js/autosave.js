@@ -22,7 +22,7 @@ $journalEntryBox.keypress(function () {
         console.log("dataObj:", dataObj);
         
         
-        console.log(dataObj['entry']);
+        // console.log(dataObj['entry']);
         // console.log(dataObj['entry']);
         // const data = new FormData($journalEntryBox);
         // console.log("data", data.get('entry'));
@@ -30,7 +30,7 @@ $journalEntryBox.keypress(function () {
         axios({
             method: 'put',
             url: '/saveJournalEntry',
-            data: {entry : dataObj['entry']},
+            data: {entry : dataObj['entry'], journalId : dataObj['journalId'], entryIndex : dataObj['entryIndex'] },
         })
         .then(() => {
             $status.attr('class', 'saved').text('Saved!');

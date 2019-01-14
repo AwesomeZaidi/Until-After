@@ -287,6 +287,7 @@ main {
   margin-bottom: 2em;
 }
 .auth-page.signup.settings .settings-nav .back-link-text {
+  color: #E7AC03;
   margin-bottom: 1em;
 }
 .auth-page.signup.settings .settings-nav .settings-title, .auth-page.signup.settings .settings-nav .back-link-text {
@@ -316,7 +317,7 @@ main {
   padding: 0.5em 2em;
 }
 .auth-page.signup.settings .info-section .copy-section button:hover {
-  background-color: #5cb85c;
+  background-color: #E7AC03;
 }
 .auth-page.signup.settings .info-section .user {
   display: flex;

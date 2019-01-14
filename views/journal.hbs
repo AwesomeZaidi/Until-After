@@ -24,29 +24,30 @@
                 font-size: 1em;
             }
         </style>
+    
     {{else}}
-        <section class="choose-item">
+        {{!-- <section class="choose-item">
             <i class="far fa-sticky-note item-icons"></i>
             <i class="fas fa-microphone item-icons"></i>
             <i class="fas fa-camera item-icons"></i>
-        </section>
+        </section> --}}
         {{!-- <div class="journal-wrapper"> --}}
         <section class="journal-area">
-                {{authenticatedUser.createdAt}}
+                {{!-- {{authenticatedUser.createdAt}} --}}
 
             <div id="status" class="nochange save-text"></div>
             <form class="box journal-form" action="/saveJournalEntry?_method=PUT" id="journalEntryBox" method="post">
-                <textarea class="day" name="day">{{journal.day}}</textarea>
+                <textarea class="entry" name="entry">{{journal.entry}}</textarea>
             </form>
         </section>
-        <section class="journal-guide">
+        {{!-- <section class="journal-guide">
             <p class="popup-question"><strong>How was today?</strong></p>
             <div class="mood-choice">
                 <p>😃</p>
                 <p>😕</p>
                 <p>☹️</p>
             </div>
-        </section>
+        </section> --}}
         {{!-- </div> --}}
     </main>
 

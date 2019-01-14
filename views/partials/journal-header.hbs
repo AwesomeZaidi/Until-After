@@ -1,11 +1,13 @@
-<header>
+<header class="journal-header">
   <nav>
     <div class="nav-items">
       <div class="left">
         <a href="/dashboard"><i class="fas fa-angle-left menu-item"></i></a>
       </div>
       <div class="right">
-        <i class="fas fa-plus menu-item"></i>
+        <form action="/newEntryInJournal" class="plus-btn" method="post">
+          <button type="submit"><i class="fas fa-plus menu-item"></i></button>
+        </form>
         <a href="/settings"><i class="fas fa-cog menu-item"></i></a>
         <a href="/logout"><i class="fas fa-sign-out-alt"></i></a>
       </div>

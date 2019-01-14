@@ -54,7 +54,7 @@ p {
 }
 
 header {
-  background-color: #44C0FF;
+  background-color: transparent;
   height: 10vh;
 }
 header nav {
@@ -70,15 +70,18 @@ header nav .nav-items .right {
   margin-right: 1.4em;
 }
 header nav .nav-items .right i {
-  color: #ffffff;
+  color: #E7AC03;
   font-size: 1.4em;
   margin: 0 0.2em;
+}
+header nav .nav-items .right .plus-btn {
+  display: inline;
 }
 header nav .nav-items .left {
   margin-left: 1.4em;
 }
 header nav .nav-items .left i {
-  color: #ffffff;
+  color: #E7AC03;
   font-size: 1.3em;
   margin: 0 0.2em;
 }
@@ -105,7 +108,12 @@ main {
     font-size: 2.2em;
   }
   .journal .journal-area {
-    height: 65vh;
+    height: 100vh;
+    background: url(/images/paperbg.png) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
   }
   .journal .journal-area .save-text {
     margin: 0;
@@ -127,6 +135,15 @@ main {
     max-width: 99%;
     width: 99%;
     font-size: 1em;
+    background-color: transparent;
+    border: none;
+    padding-left: 0.6em;
+    padding-right: 0.6em;
+  }
+  .journal .journal-area .journal-form textarea:focus {
+    outline: 0;
+    outline-color: transparent;
+    outline-style: none;
   }
   .journal .journal-guide {
     width: 100%;

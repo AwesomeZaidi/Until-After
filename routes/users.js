@@ -41,9 +41,10 @@ router.post('/signup', (req, res) => {
                     return res.status(401).send({ message: "Account with this username already exists" });
                 } else {
                         const user = new User(req.body);
-                        const journal = new Journal();  
+                        const journal = new Journal();                          
                         journal.save();
-                        user.journal = journal;
+                        console.log("journal time created:", journal.createdAt);
+                        user.journals.unshift(journal);
                         foundUser.friendsWithPermission.push(user);
                         foundUser.save();
                         //TODO: SendGrid.sendWelcomeEmail(user);
@@ -69,7 +70,8 @@ router.post('/signup', (req, res) => {
                     const user = new User(req.body);
                     const journal = new Journal();  
                     journal.save();
-                    user.journal = journal;
+                    // console.log("journal time created:", journal.createdAt);
+                    user.journals.unshift(journal);
                     //   SendGrid.sendWelcomeEmail(user);
                     // save the user and sign the jwt token in cookies.
                     user.save().then((user) => {
@@ -90,8 +92,10 @@ router.post('/signup', (req, res) => {
 router.post('/login', (req,res) => {
     const username = req.body.username;
     const password = req.body.password;
-    
+    console.log("username:", username);
+    console.log("password:", password);
     User.findOne({username}, "username password").then(user => {
+        console.log("user:", user);
         if(!user) {
             // User not found
             return res.status(401).send({ message: "Wrong Username" });

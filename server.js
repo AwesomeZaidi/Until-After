@@ -9,6 +9,8 @@ const logger = require('morgan');
 const jwt = require('jsonwebtoken');
 const methodOverride = require('method-override');
 const expressFileupload = require('express-fileupload');
+const schedule = require('node-schedule');
+
 //Initialize a REST client in a single line:
 
 const app = express();
@@ -47,7 +49,28 @@ const journalRouter = require('./routes/journal');
 const usersRouter = require('./routes/users');
 const settingsRouter = require('./routes/settings');
 const requestRouter = require('./routes/request');
-const twilio = require('./routes/twilio');
+// const twilio = require('./routes/twilio');
+
+// when a user creates a journal, we get that createdAt time and in that controller we call a function
+// to schedule the dots creations. 
+
+  // The function will run every 7 days
+  // hour (0-23)
+  // date (1-31)
+  // month (0-11)
+  // year
+  // dayOfWeek (0-6) Starting with Sunday
+
+  // this function will check when it's being created, based on that it'll run one of the jobs.
+
+
+//   var j = schedule.scheduleJob({ start: startTime, end: endTime, rule: '*/1 * * * * *' }, function(){
+//     console.log('Time for tea!');
+//   });
+
+// const j = schedule.scheduleJob('60 * * * *', function(){
+//   console.log('The answer to life, the universe, and everything!');
+// });
 
 // specific custom auth checking middleware.
 

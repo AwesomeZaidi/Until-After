@@ -4,8 +4,7 @@ const Journal = require("../models/journal");
 const User = require("../models/user");
 
 /* GET user journal page. */
-router.get('/:id/journal', function(req, res, next) {
-  console.log("journal view");
+router.get('/:id/journal', (req, res) => {
   if (req.user == null) {
     res.redirect('/login');
   }
@@ -30,11 +29,13 @@ router.get('/:id/journal', function(req, res, next) {
   }
 })
 
-router.get('/', function(req, res, next) {
-
+router.get('/', (req, res) => {
+  console.log("getting index");
   const currentUser = req.user;
   if (currentUser) {
-    Journal.findById(currentUser.journal).then((journal) => {
+    console.log("got current user", currentUser);
+    const journals = currentUser.journals;
+    Journal.findById(journals[journals.length-1]).then((journal) => {
       const accountOpenRequested = currentUser.accountOpenRequested;
       res.render('journal', {journal, accountOpenRequested} );
     }).catch((err) => {
@@ -47,7 +48,14 @@ router.get('/', function(req, res, next) {
   }
 });
 
-router.get('/dashboard', function(req, res, next) {
+router.get('/dashboard', (req, res) => {
+  currentUser = req.user;
+
+  if (currentUser) {
+    // for all the users journal objects, show all the strings in the entries array one by one.
+  } else { 
+    res.redirect('/login');
+  }
   res.render('dashboard');
 });
 
@@ -60,6 +68,7 @@ router.post('/imalive/:id', (req,res) => {
       user.save().then(() => {
         res.redirect('/');
       }).catch(console.err);
+      // might need a request object
       // DON'T KNOW HOW TO DO THIS SO MAYBE WE CAN DO IT LATER ACTUALLY!
       // go through each of the users friendsWithPermissionsId's
       // set accountRequested = false
@@ -73,15 +82,48 @@ router.post('/imalive/:id', (req,res) => {
   }
 });
 
-router.put('/saveJournalEntry', function(req, res, next) {
-    currentUser = req.user;
-
-    Journal.findById(currentUser.journal[0]).then((journal) => {
-      journal.day = req.body.entry;
+router.put('/saveJournalEntry', (req, res) => {
+  console.log(" in route ");
+  
+    const currentUser = req.user;
+    const journals = currentUser.journals;
+    // change this line later to save to the most recent journal model
+    console.log("current user journals:", journals);
+    
+    Journal.findById(journals[0]).then((journal) => {
+      console.log("journal:", journal);
+      
+      console.log("req.body.entry:", req.body.entry);
+      
+      journal.entry = req.body.entry;
       journal.save().then(() => {
         res.sendStatus(200);
       })
     }).catch(console.err);
+});
+
+router.post('/newEntryInJournal', (req, res) => {
+  console.log("clicked newEntryInJournal");
+  const currentUser = req.user;
+  // get the user
+  if (currentUser) {
+      const journals = currentUser.journals;
+      // go to their latest journal
+      Journal.findById(journals[0]).then((journal) => {
+        const entry = journal.entry;
+        console.log("journal:", journal);
+        // append a new entry to their list of entries
+        journal.entries.unshift(entry);
+        console.log("new journal:", journal);
+        console.log("newer journal:", journal);
+        journal.entry = "";
+        journal.save();
+        res.redirect('/');
+      }).catch(console.err)
+    // create a new entry
+  } else {
+    res.redirect('/login');
+  }
 });
 
 module.exports = router;

@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt');
-const moment = require('moment');
 
 const UserSchema = new Schema({
   createdAt: { type: Date },
@@ -20,11 +19,11 @@ const UserSchema = new Schema({
   invitecode: { type: String },
   birthdate: { type: Date },
   // friends : [{ type: Schema.Types.ObjectId, ref: "User", required: false }],
-  journal : [{ type: Schema.Types.ObjectId, ref: "Journal"}],
+  journals : [{ type: Schema.Types.ObjectId, ref: "Journal"}],
   isAdmin: { type: Boolean, default: false },
   underInvestigation: { type: Boolean, default: false},
   accountOpenRequested: { type: Boolean, default: false},
-  dead: { type: Boolean, default: false}
+  dead: { type: Boolean, default: false }
 });
 
 // const User = mongoose.model("User", UserSchema);
@@ -33,9 +32,8 @@ UserSchema.pre("save", function(next) {
   const now = new Date();
   this.updatedAt = now;
   if (!this.createdAt) {
-    const thisMoment = moment(this.createdAt).format("h:mm");
-    this.createdAt = thisMoment;
- }
+    this.createdAt = now;
+  }
 
   // ENCRYPT PASSWORD
   const user = this;

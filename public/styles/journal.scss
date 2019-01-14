@@ -22,7 +22,12 @@
         //     flex-direction: column;
         //     min-height: 80vh;
             .journal-area {
-                height: 65vh;
+                height: 100vh;
+                    background: url(/images/paperbg.png) no-repeat center center fixed; 
+                    -webkit-background-size: cover;
+                    -moz-background-size: cover;
+                    -o-background-size: cover;
+                    background-size: cover;
                 // flex: 1;
                 .save-text {
                     margin: 0;
@@ -44,8 +49,18 @@
                         max-width: 99%;
                         width: 99%;
                         font-size: 1em;
+                        background-color: transparent;
+                        border: none;
+                        padding-left: .6em;
+                        padding-right: .6em;
                         //TODO: add padding to this later
+
                     }
+                    textarea:focus {
+                        outline: 0;
+                        outline-color: transparent;
+                        outline-style: none;
+                      }
                 }
             }
             .journal-guide {

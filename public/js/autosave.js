@@ -22,15 +22,15 @@ $journalEntryBox.keypress(function () {
         console.log("dataObj:", dataObj);
         
         
-        console.log(dataObj['day']);
-        // console.log(dataObj['day']);
+        console.log(dataObj['entry']);
+        // console.log(dataObj['entry']);
         // const data = new FormData($journalEntryBox);
-        // console.log("data", data.get('day'));
+        // console.log("data", data.get('entry'));
         
         axios({
             method: 'put',
             url: '/saveJournalEntry',
-            data: {entry : dataObj['day']},
+            data: {entry : dataObj['entry']},
         })
         .then(() => {
             $status.attr('class', 'saved').text('Saved!');

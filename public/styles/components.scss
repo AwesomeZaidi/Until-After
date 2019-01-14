@@ -1,5 +1,6 @@
 $white: #ffffff;
 $blue: #44C0FF;
+$yellow: #E7AC03;
 
 html, body {
     padding: 0px;
@@ -54,7 +55,7 @@ p {
 }
 
 header {
-    background-color: $blue;
+    background-color: transparent;
     height: 10vh;
     nav {
         height: 100%;
@@ -66,15 +67,18 @@ header {
             .right {
                 margin-right: 1.4em;
                 i {
-                    color: $white;
+                    color: $yellow;
                     font-size: 1.4em;
                     margin: 0 .2em;
+                }
+                .plus-btn {
+                    display: inline;
                 }
             }
             .left {
                 margin-left: 1.4em;
                 i {
-                    color: $white;
+                    color: $yellow;
                     font-size: 1.3em;
                     margin: 0 .2em;
                 }

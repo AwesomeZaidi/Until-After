@@ -8,7 +8,8 @@ router.get('/settings', (req, res) => {
     const invitecode = req.user.invitecode;
     const friendsIds = req.user.friendsWithPermission;
     if (req.user) {
-        User.findById(req.user.id).populate('friendsWithPermission').then((friends) => {           
+        // get all the friends who have the ability to access your account;.
+        // User.findById(req.user.id).populate('friendsWithPermission').then((friends) => {           
             if (invitecode) {
                 User.findById(invitecode).then((friend) => {
                     const name = friend.firstName + " " + friend.firstName;
@@ -30,7 +31,7 @@ router.get('/settings', (req, res) => {
                     res.render('settings', { friends });
                   });
             }
-        }).catch(console.err);
+        // }).catch(console.err);
     } else {
         res.redirect('/login');
     };

@@ -27,7 +27,7 @@ app.engine('hbs', exphbs({
   extname: ".hbs",
   helpers: {
     dotdotdot: function(str) {
-      if (str.length > 10) {
+      if (str.length > 40) {
         return str.substring(0,35) + '...';
       }
       return str;

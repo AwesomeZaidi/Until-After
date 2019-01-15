@@ -41,6 +41,19 @@ html, body {
     font-size: 1em;
 }
 
+.clear-btn {
+    background-color: transparent;
+    border: none;
+}
+
+.icon-form {
+    border: none;
+}
+
+.icon-form button i {
+    font-size: 1.9em !important;
+}
+
 .anim-hov-fast {
     -webkit-transition: background-color .5s ease-out;
     -moz-transition: background-color .5s ease-out;
@@ -72,6 +85,7 @@ header {
             align-items: center;
             .right {
                 margin-right: 1.4em;
+                display: inherit;
                 i {
                     color: #E7AC03;
                     font-size: 1.4em;

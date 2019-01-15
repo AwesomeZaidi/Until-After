@@ -11,7 +11,8 @@
                     <form action="/journal/0/{{@index}}" method="get">
                         <input type="hidden" name="journal-index-0" value="0"></input>
                         <input type="hidden" name="entry-index-{{@index}}" value="{{@index}}">
-                        <button type="submit"><h3>{{ dotdotdot this.text }}</h3></button>
+                        <input class="j-input" type="text" value="{{ dotdotdot this.text }}">
+                        {{!-- <input class="clear-btn" type="submit"><h3></h3> --}}
                     </form>
                 {{!-- {{/each}} --}}
             {{/each}}
@@ -25,5 +26,12 @@
         border-bottom: 1px solid;
         border-color: rgba(0, 0, 0, 0.144);
         margin-left: 1em;
+    }
+    .j-input {
+        background-color: transparent;
+        border: none;
+        font-size: 1em;
+        font-weight: 600;
+        margin-bottom: .6em;
     }
 </style>

@@ -5,9 +5,10 @@
         <a href="/dashboard"><i class="fas fa-angle-left menu-item"></i></a>
       </div>
       <div class="right">
-        <form action="/newEntryInJournal" class="plus-btn" method="post">
+        <form class="icon-form" action="/newEntryInJournal" class="plus-btn" method="post">
           <input type="hidden" name="journalId" value={{journal._id}}>
-          <button type="submit"><i class="far fa-sticky-note"></i></button>
+          {{!-- <input class="icon-input" type="text" value="{{ dotdotdot this.text }}"> --}}
+          <button class="clear-btn" type="submit"><i class="far fa-sticky-note"></i></button>
           {{!-- far fa-sticky-note --}}
         </form>
         <a href="/settings"><i class="fas fa-cog menu-item"></i></a>

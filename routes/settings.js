@@ -12,7 +12,7 @@ router.get('/settings', (req, res) => {
         // User.findById(req.user.id).populate('friendsWithPermission').then((friends) => {           
             if (invitecode) {
                 User.findById(invitecode).then((friend) => {
-                    const name = friend.firstName + " " + friend.firstName;
+                    const name = friend.firstName + " " + friend.lastName;
                     const id = friend._id; 
                     User.find({
                         '_id': {

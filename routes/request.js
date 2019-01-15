@@ -18,10 +18,15 @@ router.post('/:id/requestAccess', function(req, res) {
     const id = req.params.id;
     User.findById(id).then((user) => {
         const accessRequest = new AccessRequest(req.body);
-        // const num = user.number;
         user.accountOpenRequested = true;
         user.underInvestigation = true;
-        twilio.sendText();
+        const userNumber = String(user.number);
+        const name = `${user.firstName} ${user.lastName}`;
+        const requesterName = `${req.user.firstName} ${req.user.lastName}`;
+        console.log("requesterName:", requesterName);
+        
+        console.log("userNumber:", userNumber);
+        twilio.sendText(userNumber, name, requesterName);
         user.save();
         // now we have to trigger some functions from another API to alert the user.
         accessRequest.save().then(() => {

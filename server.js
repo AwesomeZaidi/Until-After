@@ -75,8 +75,9 @@ const requestRouter = require('./routes/request');
 //     console.log('Time for tea!');
 //   });
 
-// const j = schedule.scheduleJob('60 * * * *', function(){
-//   console.log('The answer to life, the universe, and everything!');
+// const dailyCheckin = schedule.scheduleJob('*/5 * * * *', function(){
+//   // prompt the user for their mood and leave it on the screen until they've cleared it.
+
 // });
 
 // specific custom auth checking middleware.

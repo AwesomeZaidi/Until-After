@@ -4,15 +4,16 @@
     <section class="journal-view">
         <p class="journal-weeks-label">Your Notes</p>
         <section>
-            {{#each journals}}
+            {{#each entries}}
             {{!-- there could be some way to do it like this like maybe in some js --}}
-                {{#each this.entries}}
-                    <form action="/journal/{{@../index}}/{{@index}}" method="get">
-                        <input type="hidden" name="journal-index-{{@../index}}" value="{{@../index}}"></input>
+                {{!-- {{#each this.entries}} --}}
+                    {{!-- temp fix changing @../index to 0 for demo. --}}
+                    <form action="/journal/0/{{@index}}" method="get">
+                        <input type="hidden" name="journal-index-0" value="0"></input>
                         <input type="hidden" name="entry-index-{{@index}}" value="{{@index}}">
-                        <button type="submit"><h3>{{ dotdotdot this }}</h3></button>
+                        <button type="submit"><h3>{{ dotdotdot this.text }}</h3></button>
                     </form>
-                {{/each}}
+                {{!-- {{/each}} --}}
             {{/each}}
         </section>
         {{!-- <canvas class="journal-view-box" id="myCanvas" ></canvas> --}}

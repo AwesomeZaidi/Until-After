@@ -4,9 +4,7 @@ const Schema = mongoose.Schema;
 const JournalSchema = new Schema({
     createdAt: { type: Date },
     updatedAt: { type: Date },
-    // entry: { type: String},
-    entries: { type: Array }
-    // entry : [{ type: Schema.Types.ObjectId, ref: 'Entry', required: false }],
+    entries: [{ type: Schema.Types.ObjectId, ref: 'Entry', required: false }],
     // day: { type: String, default: "" },
     // week: { type: Array },
 });

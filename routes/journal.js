@@ -2,8 +2,10 @@ const express = require('express');
 const router = express.Router();
 const Journal = require("../models/journal");
 const User = require("../models/user");
+const Entry = require("../models/entry");
 
-/* GET user journal page. */
+
+/* GET user journal page. - NOT FULLY IMPLEMENTED YET I BELIEVE.... */
 router.get('/:id/journal', (req, res) => {
   if (req.user == null) {
     res.redirect('/login');
@@ -29,32 +31,33 @@ router.get('/:id/journal', (req, res) => {
   }
 })
 
+// GET INDEX ROUTE
 router.get('/', (req, res) => {
-  console.log("getting index");
   const currentUser = req.user;
   if (currentUser) {
-    console.log("got current user", currentUser);
-    const journalZero = currentUser.journals[0];
-    // console.log("currUser journals[0]:", journals[0]);
-    
     Journal.findById(currentUser.journals[0]).then((journal) => {
-      console.log("journal:", journal);
       const accountOpenRequested = currentUser.accountOpenRequested;
       if (journal.entries < 1) {
-        const entry = "";
+        console.log("in if");
+        const entryObj = new Entry();
+        journal.entries.push(entryObj);
+        entryObj.save();
+        journal.save();
+        const entry = entryObj.text;
         const entryIndex = 0;
         res.render('journal', {journal, entry, entryIndex, accountOpenRequested});
       } else {
-        const entry = journal.entries[0];
-        const entryIndex = 0;
-        res.render('journal', {journal, entry, entryIndex, accountOpenRequested});
+        console.log("in else");
+        Entry.findById(journal.entries[0]).then((entry) => {
+          const entryIndex = 0;
+          res.render('journal', {journal, entry, entryIndex, accountOpenRequested});
+        }).catch(console.err);      
       }
     }).catch((err) => {
       console.log(err);
     })
   } else {
     console.log("no user found, redirecting to login...");
-
     res.redirect('/login');
   }
 });
@@ -67,18 +70,15 @@ router.get('/journal/:journalIndex/:entryIndex', (req, res) => {
   console.log("entryIndex", entryIndex);
   const currentUser = req.user;
   if (currentUser) {
-    console.log("got current user", currentUser);
+    // console.log("got current user", currentUser);
     const journals = currentUser.journals;
-    console.log("journals:", journals);
+    // console.log("journals:", journals);
     
     Journal.findById(journals[journalIndex]).then((journal) => {
-      console.log("Journal:", journal);
-      // console.log("specific journal:", journal);
       const accountOpenRequested = currentUser.accountOpenRequested;
-        const entry = journal.entries[entryIndex];
-        console.log("Entry:", entry);
-        
-        res.render('journal', {journal, entry, entryIndex, accountOpenRequested} );
+        Entry.findById(journal.entries[entryIndex]).then((entry) => {
+          res.render('journal', {journal, entry, entryIndex, accountOpenRequested} );
+        }).catch(console.err);
     }).catch(console.err);
   } else {
     console.log("no user found, redirecting to login...");
@@ -88,21 +88,38 @@ router.get('/journal/:journalIndex/:entryIndex', (req, res) => {
 
 router.get('/dashboard', (req, res) => {
   currentUser = req.user;
-
+  // find User
+  // find all the users journal(s) and load all their entry objects.
   if (currentUser) {
-    // console.log("curr user:", currentUser);
-    
     // for all the users journal objects, show all the strings in the entries array one by one.
     const journalsIds = currentUser.journals;
-    // console.log("journalsIds:", journalsIds);
+    // again, a quick fix... but this actually might turn into a really bright refactor later!
+    // Every User should honestly probably only have 1 Journal!
+    const journalId = currentUser.journals[0];
+    // console.log("journalId;", journalId);
     
+    console.log("journalsIds:", journalsIds);
     Journal.find({
       '_id': {
         $in: journalsIds
       }
     }, function(err, journals) {
-      // console.log("journals:", journals);      
-      res.render('dashboard', { journals });
+      console.log("journals:", journals);
+      // temp fix for product demo day as there will only be 1 Journal obj for now.
+      const entryIds = journals[0].entries;
+      // const journalId = journals[0]._id;
+      console.log("entryIds:", entryIds);
+      Entry.find({
+        '_id': {
+          $in: entryIds
+        }
+      }, function(err, entries) {
+        console.log("journalId:", journalId);
+        
+        console.log("entries:", entries);
+        entries = entries.reverse();
+        res.render('dashboard', { entries, journalId });
+      })
     });
   } else { 
     res.redirect('/login');
@@ -140,28 +157,28 @@ router.put('/saveJournalEntry', (req, res) => {
       console.log("currentUser:", currentUser);
       const journalId = req.body.journalId;
       console.log("journalId:", journalId);
-      const entryIndex = Number(req.body.entryIndex);
+      const entryIndex = req.body.entryIndex;
       console.log("entryIndex:", entryIndex);
-      const entry = String(req.body.entry);
-      console.log("entry:", entry);
-      // const journals = currentUser.journals;
-      // // change this line later to save to the most recent journal model
-      // console.log("current user journals:", journals);
       
       Journal.findOne({_id: journalId}).then(journal => {
         if(journal.entries.length < 1) {
+          // if there's no entries then we need to create one.
           console.log("in if");
+          const entry = new Entry(req.body.entry);
+          entry.save();
           journal.entries.push(entry);
-
         } else {
           console.log("in else");
-          journal.entries.unshift(entry);
-
-          // journal.entries[entryIndex] = entry;
+          // journal.entries[entryIndex].update(entry);
+          Entry.findById(journal.entries[entryIndex]).then((entry) => {
+            entry.text = req.body.entry;
+            journal.entries[entryIndex] = entry;
+            entry.save();
+            journal.save();
+            res.sendStatus(200);
+          }).catch(console.err);
         }
-          journal.save()
-          res.sendStatus(200)
-        }).catch(console.err);
+      }).catch(console.err);
       // Journal.findById(journalId).then((journal) => {
       // // console.log("journal:", journal);
       // journal.entries[Number(entryIndex)] = req.body.entry;
@@ -184,10 +201,8 @@ router.put('/saveJournalEntry', (req, res) => {
       //   }).catch(console.err);
       // }
     // }).catch(console.err);
-
     } else {
       console.log("no user");
-      
       res.redirect('/login');
     }
 });
@@ -202,7 +217,14 @@ router.post('/newEntryInJournal', (req, res) => {
   // get the user
   if (currentUser) {
     console.log("got currentUser");
-    // console.log("journalId:", journalId);
+    console.log("journalId:", journalId);
+    Journal.findById(journalId).then((journal) => {
+      const entry = new Entry();
+      entry.save();
+      journal.entries.unshift(entry);
+      journal.save();
+      res.redirect('/');
+    }).catch(console.err);
     
       // go to their latest journal
       // Journal.findById(journalId).then((journal) => {
@@ -213,7 +235,6 @@ router.post('/newEntryInJournal', (req, res) => {
         
         // journal.entries.unshift("");
         // journal.save();
-        res.redirect('/');
       // }).catch(console.err);
       // console.log("new empty journal:", journal);
       // append a new entry to their list of entries

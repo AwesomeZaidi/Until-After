@@ -23,9 +23,9 @@ router.post('/:id/requestAccess', function(req, res) {
         // const userNumber = String(user.number);
         // const name = `${user.firstName} ${user.lastName}`;
         // const requesterName = `${req.user.firstName} ${req.user.lastName}`;
-        console.log("requesterName:", requesterName);
+        // console.log("requesterName:", requesterName);
         
-        console.log("userNumber:", userNumber);
+        // console.log("userNumber:", userNumber);
         twilio.sendText();
         user.save();
         // now we have to trigger some functions from another API to alert the user.

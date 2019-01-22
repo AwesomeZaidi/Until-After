@@ -32,6 +32,8 @@ Future To Do's:
 - [ ] Finish implementing all the proper text and email settings
 - [ ] Create a logo
 
+*Estimated beta launch date:* **June 1st, 2019**
+
 ## How to Run
 1. `git clone url`
 2. `npm install`

@@ -3,6 +3,8 @@
 
 Website: https://www.untilafter.life
 
+Prelaunch Pitch Deck: http://bit.ly/untilafterprelaunchpitchdeck
+
 This was my Make School Product College Intensive Week Hackathon project, ideated, designed, and built the MVP in one week. Until After was chosen as one of the top 10 projects at Make School. 
 
 Milestones:
